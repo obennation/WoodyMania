@@ -36,12 +36,25 @@ class Splash extends FlxState
 				video.updateHitbox();
 				video.screenCenter();
 			});
-			video.onEnd(finish);
-			if (video.load(Paths.video('intro'))) video.delayAndStart();
+			video.onEnd(() -> {
+				if (video != null)
+				{
+					video.destroy();
+					video = null;
+				}
+				logoFunc();
+			});
+			if (video.load(Paths.video('intro')))
+			{
+				video.delayAndStart();
+			}
 			else
+			{
+				logoFunc();
+			}
+			#else
+				logoFunc();
 			#end
-			
-			logoFunc();
 		});
 	}
 	
@@ -72,18 +85,25 @@ class Splash extends FlxState
 	function logoFunc()
 	{
 		var folder:Array<String> = [];
-		if (!FileSystem.isDirectory('assets/images/branding/watermarks') || (folder = FileSystem.readDirectory('assets/images/branding/watermarks')).length == 0)
+
+		if (!FileSystem.isDirectory('assets/images/branding/watermarks')
+			|| (folder = FileSystem.readDirectory('assets/images/branding/watermarks')).length == 0)
 		{
 			finish();
 			return;
 		}
-		
-		folder = folder.filter(str -> !FileSystem.isDirectory('assets/images/branding/watermarks/$str'));
-		
+
+		folder = folder.filter(str ->
+			!FileSystem.isDirectory('assets/images/branding/watermarks/$str'));
+
 		var img = FlxG.random.getObject(folder);
+
 		trace(folder);
-		
-		logo = new FlxSprite().loadGraphic(Paths.image('branding/watermarks/${Path.withoutExtension(img)}'));
+ 
+		logo = new FlxSprite().loadGraphic(
+			Paths.image('branding/watermarks/${Path.withoutExtension(img)}')
+		);
+
 		logo.screenCenter();
 		logo.visible = false;
 		add(logo);
@@ -104,17 +124,31 @@ class Splash extends FlxState
 						t.reset(0.06125);
 					case 2:
 						logo.scale.set(1.125, 1.125);
-						FlxTween.tween(logo.scale, {x: 1, y: 1}, 0.25, {ease: FlxEase.elasticOut});
+						FlxTween.tween(
+							logo.scale,
+							{x: 1, y: 1},
+							0.25,
+							{ease: FlxEase.elasticOut}
+						);
 						t.reset(1.25);
 					case 3:
-						FlxTween.tween(logo.scale, {x: 0.2, y: 0.2}, 1.5, {ease: FlxEase.quadIn});
-						FlxTween.tween(logo, {alpha: 0}, 1.5,
+						FlxTween.tween(
+							logo.scale,
+							{x: 0.2, y: 0.2},
+							1.5,
+							{ease: FlxEase.quadIn}
+						);
+						FlxTween.tween(
+							logo,
+							{alpha: 0},
+							1.5,
 							{
 								ease: FlxEase.quadIn,
 								onComplete: (t:FlxTween) -> {
 									FlxTimer.wait(0.8, finish);
 								}
-							});
+							}
+						);
 				}
 			});
 		});
@@ -128,8 +162,12 @@ class Splash extends FlxState
 			spriteEvents.destroy();
 		}
 		#if VIDEOS_ALLOWED
-		video.stop();
-		video.destroy();
+		if (video != null)
+		{
+			video.stop();
+			video.destroy();
+			video = null;
+		}
 		#end
 		complete();
 	}
@@ -140,6 +178,9 @@ class Splash extends FlxState
 		FlxG.sound.volume = FlxG.save.data.volume;
 		
 		FlxG.autoPause = _cachedAutoPause;
-		FlxG.switchState(() -> Type.createInstance(Main.startMeta.initialState, []));
+
+		FlxG.switchState(() ->
+			Type.createInstance(Main.startMeta.initialState, [])
+		);
 	}
 }
