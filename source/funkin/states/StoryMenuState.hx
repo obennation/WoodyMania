@@ -68,16 +68,16 @@ class StoryMenuState extends MusicBeatState
 		if (curWeek >= WeekData.weeksList.length) curWeek = 0;
 		persistentUpdate = persistentDraw = true;
 		
-		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
-		scoreText.setFormat(Paths.DEFAULT_FONT, 32);
+		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 30);
+		scoreText.setFormat(Paths.DEFAULT_FONT, 30);
 		
-		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 32);
-		txtWeekTitle.setFormat(Paths.DEFAULT_FONT, 32, FlxColor.WHITE, RIGHT);
+		txtWeekTitle = new FlxText(FlxG.width * 0.7, 10, 0, "", 30);
+		txtWeekTitle.setFormat(Paths.DEFAULT_FONT, 30, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 		
 		var rankText:FlxText = new FlxText(0, 10);
 		rankText.text = 'RANK: GREAT';
-		rankText.setFormat(Paths.DEFAULT_FONT, 32);
+		rankText.setFormat(Paths.DEFAULT_FONT, 30);
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
 		
@@ -168,12 +168,11 @@ class StoryMenuState extends MusicBeatState
 		
 		add(bgYellow);
 		add(bgSprite);
-		add(grpWeekCharacters);
 		
 		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, bgSprite.y + 425).loadGraphic(Paths.image('menus/story/Menu_Tracks'));
 		add(tracksSprite);
 		
-		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 32);
+		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 30);
 		txtTracklist.alignment = CENTER;
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
@@ -204,11 +203,11 @@ class StoryMenuState extends MusicBeatState
 		
 		scriptGroup.call('onUpdate', [elapsed]);
 		
-		// scoreText.setFormat('VCR OSD Mono', 32);
+		// scoreText.setFormat('VCR OSD Mono', 30);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, FlxMath.bound(elapsed * 30, 0, 1)));
 		if (Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
 		
-		scoreText.text = "WEEK SCORE:" + lerpScore;
+		scoreText.text = "PONTUAÇÃO:" + lerpScore;
 		
 		// FlxG.watch.addQuick('font', scoreText.font);
 		
