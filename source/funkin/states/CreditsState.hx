@@ -55,7 +55,7 @@ class CreditsState extends MusicBeatState
 		['gi', 'gi', 'Compositora e Artista', 'https://twitter.com/gebyongaku', '0xFF53B7D8'],
 		['Jooj Dumwell', 'jooj', 'Compositor', 'https://twitter.com/JooJ_Dumwell99', '0xFFFFFFFF'],
 		[''],
-		['NIGHTMARE ENGINE TEAM'],
+		['NIGHTMARE VISION TEAM'],
 		['DuskieWhy', 'duskie', 'Programador da Nightmare Vision', 'https://twitter.com/DuskieWhy', '0xA8324A'],
 		['data5', 'data', 'Programador da Nightmare Vision', 'https://x.com/_data5', '0xF9A250'],
 		['NebulaZorua', 'neb', 'Backend do Modchart\n(Criou o fork inicial do qual o NMV foi derivado)', 'https://twitter.com/Nebula_Zorua', '0x9B00B3'],
