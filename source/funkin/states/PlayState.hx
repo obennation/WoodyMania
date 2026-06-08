@@ -2214,6 +2214,9 @@ class PlayState extends MusicBeatState
 				
 				if (duration > 0) FlxTween.tween(camGame, {alpha: leAlpha}, duration);
 				else camGame.alpha = leAlpha;
+			
+			case 'Camera Flash':
+				FlxG.camera.flash(FlxColor.WHITE, 1);
 				
 			case 'Play Animation':
 				var char:Character = dad;

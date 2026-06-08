@@ -129,6 +129,8 @@ class GameOverSubstate extends MusicBeatSubstate
 	
 	override function update(elapsed:Float)
 	{
+		FlxG.camera.zoom = FlxMath.lerp(0.9, FlxG.camera.zoom, 0.8);
+
 		PlayState.instance?.scripts.call('onUpdate', [elapsed]);
 		super.update(elapsed);
 		
