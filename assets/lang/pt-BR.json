@@ -148,13 +148,13 @@
         "misc.devmode": "Modo de Desenvolvimento",
         "misc.streamedsongfiles": "Arquivos de Musica Transmitidos",
         "misc.autopause": "Jogo com pausa Automatica",
-        "misc.language": "Linguagem",
+        "misc.language": "Idioma",
         
         "misc.nmvsplash.text": "Se desmarcado, a tela inicial será completamente ignorada na inicialização da engine.",
         "misc.devmode.text": "Se marcado, os rastreamentos e as teclas de atalho do desenvolvedor ficarão disponíveis.",
         "misc.streamedsongfiles.text": "Se marcado, os arquivos de música reproduzíveis serão transmitidos via bytes em vez de serem carregados todos de uma vez. Isso melhora bastante os tempos de carregamento, porém é EXTREMAMENTE EXPERIMENTAL e propenso a problemas.",
         "misc.autopause.text": "Se marcado, o jogo congelará automaticamente ao ser desmarcado, pausando todos os sons e visuais. Se desmarcado, o jogo continuará normalmente, independentemente do foco.",
-        "misc.language.text": "Selecione sua Lingua.",
+        "misc.language.text": "Escolha seu Idioma.",
 
         "diff.easy": "Easy",
         "diff.normal": "Normal",

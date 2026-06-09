@@ -297,11 +297,18 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	
 	function updateTextFrom(option:Option)
 	{
-		var text:String = option.displayFormat;
-		var val:Dynamic = option.getValue();
-		if (option.type == 'percent') val *= 100;
-		var def:Dynamic = option.defaultValue;
-		option.text = text.replace('%v', '$val').replace('%d', '$def');
+    	var text:String = option.displayFormat;
+    	var val:Dynamic = option.getValue();
+
+		if(val == "en-US")
+            val = "English";
+        else if(val == "pt-BR")
+            val = "Portugues (Brasil)";
+
+    	if (option.type == 'percent') val *= 100;
+
+    	var def:Dynamic = option.defaultValue;
+    	option.text = text.replace('%v', '$val').replace('%d', '$def');
 	}
 	
 	function clearHold()
