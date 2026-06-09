@@ -170,7 +170,7 @@ class StoryMenuState extends MusicBeatState
 		add(bgYellow);
 		add(bgSprite);
 		
-		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, bgSprite.y + 425).loadGraphic(Paths.image('menus/story/Menu_Tracks'));
+		var tracksSprite:FlxSprite = new FlxSprite(FlxG.width * 0.07, bgSprite.y + 425).loadGraphic(Paths.image(LanguageManager.image("menus/story/Menu_Tracks")));
 		add(tracksSprite);
 		
 		txtTracklist = new FlxText(FlxG.width * 0.05, tracksSprite.y + 60, 0, "", 30);

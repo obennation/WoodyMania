@@ -46,4 +46,15 @@ class LanguageManager
 
         return key;
     }
+
+    public static function image(path:String):String
+    {
+        if(ClientPrefs.language == "pt-BR")
+        {
+            var translated = 'lang/pt-BR/' + path;
+            if(Paths.fileExists('images/' + translated + '.png'))
+                return translated;
+        }
+        return path;
+    }
 }

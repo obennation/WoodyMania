@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="credits.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="credits basic0000" x="0" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0001" x="0" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0002" x="0" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0003" x="507" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0004" x="507" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0005" x="507" y="0" width="507" height="124"/>
+	<SubTexture name="credits basic0006" x="0" y="124" width="507" height="124"/>
+	<SubTexture name="credits basic0007" x="0" y="124" width="507" height="124"/>
+	<SubTexture name="credits basic0008" x="0" y="124" width="507" height="124"/>
+	<SubTexture name="credits white0000" x="0" y="248" width="615" height="171" frameX="-2" frameY="0" frameWidth="617" frameHeight="172"/>
+	<SubTexture name="credits white0001" x="0" y="419" width="617" height="171" frameX="0" frameY="0" frameWidth="617" frameHeight="172"/>
+	<SubTexture name="credits white0002" x="0" y="590" width="614" height="172" frameX="-2" frameY="0" frameWidth="617" frameHeight="172"/>
+</TextureAtlas>

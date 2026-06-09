@@ -20,6 +20,8 @@ import funkin.states.options.*;
 import funkin.states.*;
 import funkin.states.editors.MasterEditorMenu;
 
+import funkin.backend.LanguageManager;
+
 // todo add null safety later
 class MainMenuState extends MusicBeatState
 {
@@ -78,21 +80,25 @@ class MainMenuState extends MusicBeatState
 		
 		for (i in 0...optionShit.length)
 		{
-			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-			
-			final menuItem:FlxSprite = new FlxSprite(0, (i * 140) + offset);
-			menuItem.frames = Paths.getSparrowAtlas('menus/mainmenu/menu_' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
-			menuItem.animation.play('idle');
-			menuItem.ID = i;
-			menuItem.screenCenter(X);
-			menuItems.add(menuItem);
-			
-			final scr:Float = optionShit.length < 6 ? 0 : (optionShit.length - 4) * 0.135;
-			
-			menuItem.scrollFactor.set(0, scr);
-			menuItem.updateHitbox();
+    		var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+    		final menuItem:FlxSprite = new FlxSprite(0, (i * 140) + offset);
+    		var menuPath = 'menus/mainmenu/menu_' + optionShit[i];
+    		if(ClientPrefs.language == "pt-BR")
+    		{
+    		    var ptPath = 'lang/pt-BR/' + menuPath;
+    		    if(Paths.fileExists('images/' + ptPath + '.png'))
+    		        menuPath = ptPath;
+    		}
+    		menuItem.frames = Paths.getSparrowAtlas(menuPath);
+    		menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
+    		menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
+    		menuItem.animation.play('idle');
+    		menuItem.ID = i;
+    		menuItem.screenCenter(X);
+    		menuItems.add(menuItem);
+    		final scr:Float = optionShit.length < 6 ? 0 : (optionShit.length - 4) * 0.135;
+    		menuItem.scrollFactor.set(0, scr);
+    		menuItem.updateHitbox();
 		}
 		
 		var gitHash = GitMacro.getGitCommitHash();
