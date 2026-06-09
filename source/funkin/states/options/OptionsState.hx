@@ -8,18 +8,20 @@ import funkin.data.*;
 import funkin.states.*;
 import funkin.objects.*;
 
+import funkin.backend.LanguageManager;
+
 class OptionsState extends MusicBeatState
 {
 	public static var onPlayState:Bool = false;
 	
 	var options:Array<String> = [
-		'Notes',
-		'Controls',
-		'Adjust Delay and Combo',
-		'Graphics',
-		'Visuals and UI',
-		'Gameplay',
-		"Misc"
+		'notes',
+		'controls',
+		'adjustdelay',
+		'graphics',
+		'visuals',
+		'gameplay',
+		"misc"
 	];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	
@@ -32,20 +34,20 @@ class OptionsState extends MusicBeatState
 	{
 		switch (label)
 		{
-			case 'Notes':
+			case 'notes':
 				openSubState(new funkin.states.options.NoteSettingsSubState());
-			case 'Controls':
+			case 'controls':
                 final gamepad = FlxG.gamepads.getFirstActiveGamepad();
 				openSubState(new funkin.states.options.ControlsSubState(gamepad != null ? Gamepad(gamepad.id) : Keys));
-			case 'Graphics':
+			case 'graphics':
 				openSubState(new funkin.states.options.GraphicsSettingsSubState());
-			case 'Visuals and UI':
+			case 'visuals':
 				openSubState(new funkin.states.options.VisualsUISubState());
-			case 'Gameplay':
+			case 'gameplay':
 				openSubState(new funkin.states.options.GameplaySettingsSubState());
-			case 'Misc':
+			case 'misc':
 				openSubState(new funkin.states.options.MiscSubState());
-			case 'Adjust Delay and Combo':
+			case 'adjustdelay':
 				FlxG.switchState(funkin.states.options.NoteOffsetState.new);
 		}
 	}
@@ -72,6 +74,7 @@ class OptionsState extends MusicBeatState
 		for (i in 0...options.length)
 		{
 			var optionText:Alphabet = new Alphabet(0, 0, options[i], true, false);
+			var optionText:Alphabet = new Alphabet(0, 0, LanguageManager.get('options.' + options[i]), true, false);
 			optionText.screenCenter();
 			optionText.y += (100 * (i - (options.length / 2))) + 50;
 			grpOptions.add(optionText);

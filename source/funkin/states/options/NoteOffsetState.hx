@@ -17,6 +17,7 @@ import flixel.math.FlxPoint;
 import funkin.states.*;
 import funkin.objects.*;
 import funkin.objects.Character;
+import funkin.backend.LanguageManager;
 
 using StringTools;
 
@@ -143,7 +144,7 @@ class NoteOffsetState extends MusicBeatState
 		
 		// Note delay stuff
 		
-		beatText = new Alphabet(0, 0, 'Beat Hit!', true, false, 0.05, 0.6);
+		beatText = new Alphabet(0, 0, LanguageManager.get("adjustdelay.beathit"), true, false, 0.05, 0.6);
 		beatText.x += 260;
 		beatText.alpha = 0;
 		beatText.acceleration.y = 250;
@@ -445,11 +446,11 @@ class NoteOffsetState extends MusicBeatState
 			switch (i)
 			{
 				case 0:
-					dumbTexts.members[i].text = 'Rating Offset:';
+					dumbTexts.members[i].text = LanguageManager.get("gameplay.ratingoffset") + ':';
 				case 1:
 					dumbTexts.members[i].text = '[${ClientPrefs.comboOffset[0]}, ${ClientPrefs.comboOffset[1]}]';
 				case 2:
-					dumbTexts.members[i].text = 'Numbers Offset:';
+					dumbTexts.members[i].text = LanguageManager.get("adjustdelay.numbersoffset");
 				case 3:
 					dumbTexts.members[i].text = '[${ClientPrefs.comboOffset[2]}, ${ClientPrefs.comboOffset[3]}]';
 			}
@@ -459,7 +460,7 @@ class NoteOffsetState extends MusicBeatState
 	function updateNoteDelay()
 	{
 		ClientPrefs.noteOffset = Math.round(barPercent);
-		timeTxt.text = 'Current offset: ${Math.floor(barPercent)}  ms';
+		timeTxt.text = LanguageManager.get("adjustdelay.currentoffset") + ' ${Math.floor(barPercent)}  ms';
 	}
 	
 	function updateMode()
@@ -473,7 +474,7 @@ class NoteOffsetState extends MusicBeatState
 		timeTxt.visible = !onComboMenu;
 		beatText.visible = !onComboMenu;
 		
-		changeModeText.text = onComboMenu ? '< Combo Offset (Press Accept to Switch) >' : '< Note/Beat Delay (Press Accept to Switch) >';
+		changeModeText.text = onComboMenu ? LanguageManager.get("adjustdelay.combooffset") : LanguageManager.get("adjustdelay.notedelay");
 		
 		changeModeText.text = changeModeText.text.toUpperCase();
 		FlxG.mouse.visible = onComboMenu;

@@ -22,6 +22,7 @@ import funkin.states.*;
 import funkin.states.substates.*;
 import funkin.data.*;
 import funkin.objects.*;
+import funkin.backend.LanguageManager;
 
 // todo rewrite this its kinda messy and not that safe
 class FreeplayState extends MusicBeatState
@@ -133,7 +134,7 @@ class FreeplayState extends MusicBeatState
 		var blackOst = new FlxSprite(0, 0).makeGraphic(FlxG.width, 64, FlxColor.BLACK);
         add(blackOst);
 
-		ostName = new FlxText(935, 12, FlxG.width - 4 - 4, 'Trilha Sonora Oficial', 30);
+		ostName = new FlxText(935, 12, FlxG.width - 4 - 4, LanguageManager.get("freeplay.ost"), 30);
         ostName.font = 'StatusPlz Regular';
 		ostName.alpha = 0.5;
 		add(ostName);
@@ -148,7 +149,7 @@ class FreeplayState extends MusicBeatState
 		
 		tabHint = new FlxText(tabText.x, tabText.y + 28, 0, 24);
 		tabHint.font = scoreText.font;
-		tabHint.text = "Press TAB to switch tabs.";
+		tabHint.text = LanguageManager.get("freeplay.tab");
 		tabHint.color = FlxColor.GRAY;
 		add(tabHint);
 		
@@ -327,7 +328,7 @@ class FreeplayState extends MusicBeatState
 			ratingSplit[1] += '0';
 		}
 		
-		scoreText.text = 'PERSONAL BEST: ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
+		scoreText.text = LanguageManager.get("freeplay.score") + ': ' + lerpScore + ' (' + ratingSplit.join('.') + '%)';
 		positionHighscore();
 		
 		var shiftMult:Int = 1;
@@ -740,7 +741,7 @@ class FreeplayState extends MusicBeatState
 		if (len < 0) len = 0;
 		
 		currentTab = FlxMath.wrap(currentTab + diff, 0, len);
-		tabText.text = "[ " + (freeplayTabs[currentTab].title ?? 'Unknown') + " ]";
+		tabText.text = "[ " + LanguageManager.get(freeplayTabs[currentTab].title ?? "unknown") + " ]";
 		
 		clearSongs();
 		

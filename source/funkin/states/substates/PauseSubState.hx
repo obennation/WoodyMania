@@ -23,6 +23,7 @@ import funkin.data.*;
 import funkin.states.*;
 import funkin.objects.*;
 import funkin.scripts.*;
+import funkin.backend.LanguageManager;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -32,7 +33,7 @@ class PauseSubState extends MusicBeatSubstate
 	public static var instance:PauseSubState;
 	
 	var menuItems:Array<String> = [];
-	var menuItemsOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Options', 'Exit to menu'];
+	var menuItemsOG:Array<String> = ['resume', 'restart', 'changediff', 'options', 'exit'];
 	var difficultyChoices = [];
 	var curSelected:Int = 0;
 	
@@ -124,13 +125,13 @@ class PauseSubState extends MusicBeatSubstate
 		var meta:SongMetaData = PlayState.meta;
 		if (meta != null)
 		{
-			if (meta.composers != null) createCornerText("Composers: " + meta.composers.join(', '), true);
-			if (meta.charters != null) createCornerText("Charters: " + meta.charters.join(', '), true);
-			if (meta.artists != null) createCornerText("Artists: " + meta.artists.join(', '), true);
-			if (meta.coders != null) createCornerText("Coders: " + meta.coders.join(', '), true);
+			if (meta.composers != null) createCornerText(LanguageManager.get("pause.composers") + ": " + meta.composers.join(', '), true);
+			if (meta.charters != null) createCornerText(LanguageManager.get("pause.charters") + ": " + meta.charters.join(', '), true);
+			if (meta.artists != null) createCornerText(LanguageManager.get("pause.artists") + ": " + meta.artists.join(', '), true);
+			if (meta.coders != null) createCornerText(LanguageManager.get("pause.coders") + ": " + meta.coders.join(', '), true);
 		}
 		
-		var blueballedTxt = createCornerText("Blueballed: " + PlayState.deathCounter);
+		var blueballedTxt = createCornerText(LanguageManager.get("pause.blueballed") + ": " + PlayState.deathCounter);
 		add(blueballedTxt);
 		
 		practiceText = createCornerText("PRACTICE MODE");
@@ -263,18 +264,18 @@ class PauseSubState extends MusicBeatSubstate
 			
 			switch (daSelected)
 			{
-				case 'Options':
+				case 'options':
 					toOptions();
-				case "Resume":
+				case "resume":
 					close();
-				case 'Change Difficulty':
+				case 'changediff':
 					menuItems = difficultyChoices;
 					regenMenu();
 				case 'Toggle Practice Mode':
 					PlayState.instance.practiceMode = !PlayState.instance.practiceMode;
 					PlayState.changedDifficulty = true;
 					practiceText.visible = PlayState.instance.practiceMode;
-				case "Restart Song":
+				case "restart":
 					restartSong();
 				case "Leave Charting Mode":
 					restartSong();
@@ -304,7 +305,7 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.botplayTxt.alpha = 1;
 				case 'Hawk Tuah Respect Button -->':
 					FlxG.sound.play(Paths.sound('untitled1'));
-				case "Exit to menu":
+				case "exit":
 					returnToMain();
 			}
 		}
@@ -413,7 +414,7 @@ class PauseSubState extends MusicBeatSubstate
 		
 		for (i in 0...menuItems.length)
 		{
-			var item = new Alphabet(0, 70 * i + 30, menuItems[i], true, false);
+			var item = new Alphabet(0, 70 * i + 30, LanguageManager.get('pause.' + menuItems[i]), true, false);
 			item.isMenuItem = true;
 			item.targetY = i;
 			grpMenuShit.add(item);

@@ -9,6 +9,8 @@ import flixel.text.FlxText.FlxTextFormat;
 import funkin.objects.Bar;
 import funkin.objects.HealthIcon;
 
+import funkin.backend.LanguageManager;
+
 // if the hud resembles psych u can just extend this instead of base
 @:access(funkin.states.PlayState)
 class PsychHUD extends BaseHUD
@@ -148,9 +150,9 @@ class PsychHUD extends BaseHUD
 			str = '${accuracy}% [${parent.ratingFC}]';
 		}
 		
-		final tempScore:String = 'Score: ${FlxStringUtil.formatMoney(score, false)}'
-			+ (!parent.instakillOnMiss ? ' $textDivider Misses: ${misses}' : "")
-			+ ' $textDivider Accuracy: ${str}';
+		final tempScore:String = LanguageManager.get("hud.score") + ': ${FlxStringUtil.formatMoney(score, false)}'
+			+ (!parent.instakillOnMiss ? ' $textDivider' + ' ' + LanguageManager.get("hud.misses") + ': ${misses}' : "")
+			+ ' $textDivider' + ' ' + LanguageManager.get("hud.accuracy") + ': ${str}';
 			
 		if (!missed && !parent.cpuControlled) doScoreBop();
 		

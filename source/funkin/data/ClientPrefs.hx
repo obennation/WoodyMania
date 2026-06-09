@@ -1,7 +1,7 @@
 package funkin.data;
 
 import flixel.input.gamepad.FlxGamepadInputID;
-
+import funkin.backend.LanguageManager;
 import funkin.backend.DebugDisplay;
 
 import flixel.input.keyboard.FlxKey;
@@ -54,6 +54,10 @@ class ClientPrefs
 	@saveVar public static var unlockedFramerate:Bool = false;
 	
 	@saveVar public static var framerate:Int = 60;
+
+	// language ------------------------------------------------------------------------//
+
+	@saveVar public static var language:String = "en-US";
 	
 	// visuals ------------------------------------------------------------------------//
 	@saveVar public static var jumpGhosts:Bool = false;

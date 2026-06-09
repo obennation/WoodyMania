@@ -10,6 +10,7 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
 import funkin.objects.*;
+import funkin.backend.LanguageManager;
 
 // safety and readability
 abstract CreditsData(Array<String>) from Array<String>
@@ -49,18 +50,18 @@ abstract CreditsData(Array<String>) from Array<String>
 class CreditsState extends MusicBeatState
 {
 	@:unreflective
-	static final hardcodedCredits:Array<Array<String>> = [
+	var hardcodedCredits:Array<Array<String>> = [
 		['WOODY MANIA TEAM'],
-		['bennation', 'bennation', 'Diretor, Compositor e Artista Principal', 'https://twitter.com/eobennation', '0xFF233DA9'],
-		['gi', 'gi', 'Compositora e Artista', 'https://twitter.com/gebyongaku', '0xFF53B7D8'],
-		['Jooj Dumwell', 'jooj', 'Compositor', 'https://twitter.com/JooJ_Dumwell99', '0xFFFFFFFF'],
+		['bennation', 'bennation', LanguageManager.get("credits.bennation"), 'https://twitter.com/eobennation', '0xFF233DA9'],
+		['gi', 'gi', LanguageManager.get("credits.gi"), 'https://twitter.com/gebyongaku', '0xFF53B7D8'],
+		['Jooj Dumwell', 'jooj', LanguageManager.get("credits.joojdumwell"), 'https://twitter.com/JooJ_Dumwell99', '0xFFFFFFFF'],
 		[''],
 		['NIGHTMARE VISION TEAM'],
-		['DuskieWhy', 'duskie', 'Programador da Nightmare Vision', 'https://twitter.com/DuskieWhy', '0xA8324A'],
-		['data5', 'data', 'Programador da Nightmare Vision', 'https://x.com/_data5', '0xF9A250'],
-		['NebulaZorua', 'neb', 'Backend do Modchart\n(Criou o fork inicial do qual o NMV foi derivado)', 'https://twitter.com/Nebula_Zorua', '0x9B00B3'],
-		['JoggingScout', 'joggingscout', 'Artista', 'https://twitter.com/JoggingScout', '0x3366CC'],
-		['Iseta', 'iseta', 'Artista', 'https://twitter.com/Isetaaaaa', '0x6ede0b']
+		['DuskieWhy', 'duskie', LanguageManager.get("credits.duskiewhy"), 'https://twitter.com/DuskieWhy', '0xA8324A'],
+		['data5', 'data', LanguageManager.get("credits.data5"), 'https://x.com/_data5', '0xF9A250'],
+		['NebulaZorua', 'neb', LanguageManager.get("credits.nebulazorua"), 'https://twitter.com/Nebula_Zorua', '0x9B00B3'],
+		['JoggingScout', 'joggingscout', LanguageManager.get("credits.joggingscout"), 'https://twitter.com/JoggingScout', '0x3366CC'],
+		['Iseta', 'iseta', 'Artista', LanguageManager.get("credits.iseta"), '0x6ede0b']
 	];
 	
 	var curSelected:Int = -1;

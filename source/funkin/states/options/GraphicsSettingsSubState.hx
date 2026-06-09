@@ -5,41 +5,33 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 
 import funkin.backend.DebugDisplay;
+import funkin.backend.LanguageManager;
 
 class GraphicsSettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Graphics';
+		title = LanguageManager.get("options.graphics");
 		rpcTitle = 'Graphics Settings Menu'; // for Discord Rich Presence
 		
-		var option:Option = new Option('GPU Caching', 'If checked, GPU caching will be enabled.', 'gpuCaching', BOOL, false);
+		var option:Option = new Option(LanguageManager.get("graphics.gpucaching"), LanguageManager.get("graphics.gpucaching.text"), 'gpuCaching', BOOL, false);
 		addOption(option);
 		
 		// I'd suggest using "Low Quality" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Low Quality', // Name
-			'If checked, disables some background details,\ndecreases loading times and improves performance.', // Description
-			'lowQuality', // Save data variable name
-			'bool', // Variable type
-			false); // Default value
+		var option:Option = new Option(LanguageManager.get("graphics.lowquality"), LanguageManager.get("graphics.lowquality.text"), 'lowQuality', 'bool', false);
 		addOption(option);
 		
-		var option:Option = new Option('Shaders', 'If checked, shaders will be enabled across the mod', 'shaders', BOOL, true);
+		var option:Option = new Option(LanguageManager.get("graphics.shaders"), LanguageManager.get("graphics.shaders.text"), 'shaders', BOOL, true);
 		addOption(option);
 		
-		var option:Option = new Option('Anti-Aliasing', 'If unchecked, disables anti-aliasing, increases performance\nat the cost of sharper visuals.', 'globalAntialiasing', BOOL, true);
+		var option:Option = new Option(LanguageManager.get("graphics.antialiasing"), LanguageManager.get("graphics.antialiasing.text"), 'globalAntialiasing', BOOL, true);
 		option.onChange = onChangeAntiAliasing; // Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 		
-		var option:Option = new Option('Time Bar:', "What should the Time Bar display?", 'timeBarType', STRING, 'Time Left', ['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
+		var option:Option = new Option(LanguageManager.get("graphics.debugdisplaytype"), LanguageManager.get("graphics.debugdisplaytype.text"), 'fpsDisplayType', STRING, LanguageManager.get("graphics.simple"), [LanguageManager.get("graphics.simple"), LanguageManager.get("graphics.advanced"), LanguageManager.get("graphics.disabled")]);
 		addOption(option);
 		
-		var option:Option = new Option('Debug Display Type',
-			'Handles what type of information to display in the top left of your screen.\nSimple displays FPS & Memory, and advanced displays the same alongside debug information.\nDisabled disables the counter entirely.',
-			'fpsDisplayType', STRING, 'Simple', ['Simple', 'Advanced', 'Disabled']);
-		addOption(option);
-		
-		var option:Option = new Option('Framerate', "Pretty self explanatory, isn't it?", 'framerate', INT, 60);
+		var option:Option = new Option(LanguageManager.get("graphics.framerate"), LanguageManager.get("graphics.framerate.text"), 'framerate', INT, 60);
 		addOption(option);
 		
 		option.minValue = 60;
@@ -47,7 +39,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.displayFormat = '%v FPS';
 		option.onChange = onChangeFramerate;
 		
-		var option:Option = new Option('Unlocked Framerate', "Pretty self explanatory, isn't it?", 'unlockedFramerate', 'bool', false);
+		var option:Option = new Option(LanguageManager.get("graphics.unlockedfps"), LanguageManager.get("graphics.framerate.text"), 'unlockedFramerate', 'bool', false);
 		addOption(option);
 		
 		option.onChange = onChangeFramerate;

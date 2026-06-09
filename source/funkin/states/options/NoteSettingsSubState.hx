@@ -1,22 +1,23 @@
 package funkin.states.options;
 
+import funkin.backend.LanguageManager;
+
 using StringTools;
 
 class NoteSettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'Notes';
+		title = LanguageManager.get("options.notes");
 		rpcTitle = 'Note Settings Menu'; // for Discord Rich Presence
 		
-		var option:Option = new Option('Quants Enabled', // Name
-			'Colors notes in-game based on their step value. Helpful for timing your note hits.', 'quants', BOOL, false);
+		var option:Option = new Option(LanguageManager.get("notes.quantsenabled"), LanguageManager.get("notes.quantsenabled.text"), 'quants', BOOL, false);
 		addOption(option);
 		
-		var option:Option = new Option('Note Splashes', "If unchecked, hitting \"Sick!\" or \"Kutty!\" notes won't show particles.", 'noteSplashes', BOOL, true);
+		var option:Option = new Option(LanguageManager.get("notes.notesplashes"), LanguageManager.get("notes.notesplashes.text"), 'noteSplashes', BOOL, true);
 		addOption(option);
 		
-		var option:Option = new Option('Opponent Notes', 'If unchecked, opponent notes get hidden.', 'opponentStrums', BOOL, true);
+		var option:Option = new Option(LanguageManager.get("notes.opponentnotes"), LanguageManager.get("notes.opponentnotes.text"), 'opponentStrums', BOOL, true);
 		addOption(option);
 		
 		// temporarily disabled

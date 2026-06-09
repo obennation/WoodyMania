@@ -55,6 +55,7 @@
 
     <assets path='assets/embeds' rename='assets' embed="true" />
     <assets path="assets/game" rename="assets"/>
+    <assets path="assets/lang" />
 
     <assets path='content' embed='false' if="MODS_ALLOWED" unless="ASSET_REDIRECT"/>
 

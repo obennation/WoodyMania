@@ -9,6 +9,8 @@ import flixel.group.FlxContainer;
 
 import funkin.input.Controls.Device;
 
+import funkin.backend.LanguageManager;
+
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -68,11 +70,11 @@ class ControlsSubState extends MusicBeatSubstate
 		bg.screenCenter();
 		add(bg);
 		
-		final group = new ControlsGroup("NOTES", [
-			{label: "Left", action: NOTE_LEFT},
-			{label: "Down", action: NOTE_DOWN},
-			{label: "Up", action: NOTE_UP},
-			{label: "Right", action: NOTE_RIGHT},
+		final group = new ControlsGroup(LanguageManager.get("controls.notes"), [
+			{label: LanguageManager.get("controls.left"), action: NOTE_LEFT},
+			{label: LanguageManager.get("controls.down"), action: NOTE_DOWN},
+			{label: LanguageManager.get("controls.up"), action: NOTE_UP},
+			{label: LanguageManager.get("controls.right"), action: NOTE_RIGHT},
 			null,
 		], 0);
 		controlsGroup.add(group);
@@ -81,24 +83,24 @@ class ControlsSubState extends MusicBeatSubstate
 		resetGamepadLabel.screenCenter(X);
 		add(resetGamepadLabel);
 		
-		final group = new ControlsGroup("UI", [
-			{label: "Left", action: UI_LEFT},
-			{label: "Down", action: UI_DOWN},
-			{label: "Up", action: UI_UP},
-			{label: "Right", action: UI_RIGHT},
+		final group = new ControlsGroup(LanguageManager.get("controls.UI"), [
+			{label: LanguageManager.get("controls.left"), action: UI_LEFT},
+			{label: LanguageManager.get("controls.down"), action: UI_DOWN},
+			{label: LanguageManager.get("controls.up"), action: UI_UP},
+			{label: LanguageManager.get("controls.right"), action: UI_RIGHT},
 			null,
-			{label: "Reset", action: RESET},
-			{label: "Accept", action: ACCEPT},
-			{label: "Back", action: BACK},
-			{label: "Pause", action: PAUSE},
+			{label: LanguageManager.get("controls.reset"), action: RESET},
+			{label: LanguageManager.get("controls.accept"), action: ACCEPT},
+			{label: LanguageManager.get("controls.back"), action: BACK},
+			{label: LanguageManager.get("controls.pause"), action: PAUSE},
 			null,
 		], group.groupLastIndex);
 		controlsGroup.add(group);
 		
 		final group = new ControlsGroup("VOLUME", [
-			{label: "Mute", action: "volume_mute"},
-			{label: "Up", action: "volume_up"},
-			{label: "Down", action: "volume_down"},
+			{label: LanguageManager.get("controls.mute"), action: "volume_mute"},
+			{label: LanguageManager.get("controls.up"), action: "volume_up"},
+			{label: LanguageManager.get("controls.down"), action: "volume_down"},
 			null,
 		], group.groupLastIndex);
 		controlsGroup.add(group);
@@ -110,7 +112,7 @@ class ControlsSubState extends MusicBeatSubstate
 		], group.groupLastIndex);
 		controlsGroup.add(group);
 		
-		resetKeysLabel = new Alphabet(0, 80 * group.groupLastIndex, "Reset to Default Keys", true);
+		resetKeysLabel = new Alphabet(0, 80 * group.groupLastIndex, LanguageManager.get("controls.resetkeys"), true);
 		resetKeysLabel.screenCenter(X);
 		add(resetKeysLabel);
 		

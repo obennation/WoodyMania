@@ -17,6 +17,7 @@ import funkin.states.substates.*;
 import funkin.objects.*;
 import funkin.backend.Difficulty;
 import funkin.backend.FallbackState;
+import funkin.backend.LanguageManager;
 
 class StoryMenuState extends MusicBeatState
 {
@@ -207,7 +208,7 @@ class StoryMenuState extends MusicBeatState
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, FlxMath.bound(elapsed * 30, 0, 1)));
 		if (Math.abs(intendedScore - lerpScore) < 10) lerpScore = intendedScore;
 		
-		scoreText.text = "PONTUAÇÃO:" + lerpScore;
+		scoreText.text = LanguageManager.get("storymode.score") + ":" + lerpScore;
 		
 		// FlxG.watch.addQuick('font', scoreText.font);
 		
@@ -387,7 +388,7 @@ class StoryMenuState extends MusicBeatState
 		var leWeek:WeekData = loadedWeeks[curWeek];
 		WeekData.setDirectoryFromWeek(leWeek);
 		
-		var leName:String = leWeek.storyName;
+		var leName:String = LanguageManager.get(leWeek.storyName);
 		txtWeekTitle.text = leName.toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 		
