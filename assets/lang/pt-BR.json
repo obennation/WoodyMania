@@ -29,6 +29,12 @@
         "pause.Hard": "Hard",
         "pause.BACK": "Voltar",
 
+        "pause.Leave Charting Mode": "Sair do Modo Charter",
+        "pause.Skip Time": "Pular Tempo",
+        "pause.Toggle Botplay": "Ativar Botplay",
+        "pause.Toggle Practice Mode": "Ativar Modo Pratica",
+        "pause.End Song": "Terminar Musica",
+
         "credits.bennation": "Diretor, Compositor e Artista Principal",
         "credits.gi": "Compositora and Artista",
         "credits.joojdumwell": "Compositor",

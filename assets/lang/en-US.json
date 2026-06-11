@@ -1,5 +1,5 @@
 {
-    "name": "English (US)",
+    "name": "English",
     "translation_credits": "bennation",
     "lang": {
         
@@ -26,6 +26,12 @@
         "pause.Normal": "Normal",
         "pause.Hard": "Hard",
         "pause.BACK": "Back",
+
+        "pause.Leave Charting Mode": "Leave Charting Mode",
+        "pause.Skip Time": "Skip Time",
+        "pause.Toggle Botplay": "Toggle Botplay",
+        "pause.Toggle Practice Mode": "Toggle Practice Mode",
+        "pause.End Song": "End Song",
 
         "credits.bennation": "Director, Composer and Main Artist",
         "credits.gi": "Composer and Artist",

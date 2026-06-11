@@ -14,7 +14,6 @@ class LanguageManager
         fallback = Json.parse(
             File.getContent("assets/lang/pt-BR.json")
         );
-
         load(ClientPrefs.language);
     }
 
@@ -23,10 +22,8 @@ class LanguageManager
         trace("LOADING: " + lang);
 
         var path = 'assets/lang/$lang.json';
-
         if(!FileSystem.exists(path))
            path = "assets/lang/pt-BR.json";
-
         current = Json.parse(
            File.getContent(path)
         );
@@ -35,15 +32,11 @@ class LanguageManager
     public static function get(key:String):String
     {
         var text = Reflect.field(current.lang, key);
-
         if(text != null)
             return text;
-
         text = Reflect.field(fallback.lang, key);
-
         if(text != null)
             return text;
-
         return key;
     }
 
