@@ -170,6 +170,14 @@
 
         "hud.score": "Pontos",
         "hud.misses": "Erros",
-        "hud.accuracy": "Média"
+        "hud.accuracy": "Média",
+
+        "tutorial.left": "Esquerda",
+        "tutorial.left2": "Esquerda, Esquerda",
+        "tutorial.down": "Baixo",
+        "tutorial.up": "Cima",
+        "tutorial.up2": "Cima, Cima",
+        "tutorial.right": "Direita",
+        "tutorial.congrats": "Parabêns!"
     }
 }

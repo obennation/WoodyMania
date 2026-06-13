@@ -169,6 +169,14 @@
 
         "hud.score": "Score",
         "hud.misses": "Misses",
-        "hud.accuracy": "Accuracy"
+        "hud.accuracy": "Accuracy",
+
+        "tutorial.left": "Left",
+        "tutorial.left2": "Left, Left",
+        "tutorial.down": "Down",
+        "tutorial.up": "Up",
+        "tutorial.up2": "Up, Up",
+        "tutorial.right": "Right",
+        "tutorial.congrats": "Congrats!"
     }
 }

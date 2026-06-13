@@ -47,6 +47,7 @@ import funkin.game.Countdown;
 import funkin.input.InputSystem;
 import funkin.input.InputEvent;
 import funkin.audio.SyncedFlxSoundGroup;
+import funkin.backend.LanguageManager;
 #if VIDEOS_ALLOWED
 import funkin.video.FunkinVideoSprite;
 #end
@@ -415,6 +416,10 @@ class PlayState extends MusicBeatState
 	public static var deathCounter:Int = 0;
 	
 	public var defaultCamZoomAdd:Float = 0;
+
+	public var subtitleTimer:FlxTimer;
+	public var subtitleBox:FlxSprite;
+	public var subtitleTxt:FlxText;
 	
 	/**
 	 * Default camera zoom the game will attempt to return to.
@@ -753,6 +758,19 @@ class PlayState extends MusicBeatState
 		playHUD = new funkin.game.huds.PsychHUD(this);
 		add(playHUD);
 		playHUD.cameras = [camHUD];
+
+		subtitleBox = new FlxSprite();
+		subtitleBox.alpha = 0.6;
+		subtitleBox.visible = false;
+		subtitleBox.cameras = [camHUD];
+		add(subtitleBox);
+
+		subtitleTxt = new FlxText(0, 0, 0, "", 24);
+		subtitleTxt.setFormat(Paths.DEFAULT_FONT, 24, FlxColor.WHITE, CENTER);
+		subtitleTxt.scrollFactor.set();
+		subtitleTxt.visible = false;
+		subtitleTxt.cameras = [camHUD];
+		add(subtitleTxt);
 		
 		meta = SongMeta.getFromSong();
 		
@@ -2117,7 +2135,40 @@ class PlayState extends MusicBeatState
 		
 		callHUDFunc(hud -> hud.onCharacterChange());
 	}
-	
+
+	function showSubtitle(text:String, duration:Float)
+	{
+		if (subtitleTimer != null)
+			subtitleTimer.cancel();
+
+		subtitleTxt.text = text;
+		subtitleTxt.fieldWidth = 0;
+		subtitleTxt.updateHitbox();
+
+		var paddingX:Int = 30;
+		var paddingY:Int = 16;
+
+		var boxW:Int = Std.int(subtitleTxt.width + paddingX);
+		var boxH:Int = Std.int(subtitleTxt.height + paddingY);
+
+		subtitleBox.makeGraphic(boxW, boxH, FlxColor.BLACK);
+
+		subtitleBox.x = (FlxG.width - boxW) / 2;
+		subtitleBox.y = FlxG.height - 140;
+
+		subtitleTxt.x = subtitleBox.x + (paddingX / 2);
+		subtitleTxt.y = subtitleBox.y + (paddingY / 2) - 2;
+
+		subtitleBox.visible = true;
+		subtitleTxt.visible = true;
+
+		subtitleTimer = new FlxTimer().start(duration, function(tmr)
+		{
+			subtitleBox.visible = false;
+			subtitleTxt.visible = false;
+		});
+	}
+
 	public function triggerEventNote(eventName:String, value1:String, value2:String):Void
 	{
 		switch (eventName)
@@ -2217,6 +2268,17 @@ class PlayState extends MusicBeatState
 			
 			case 'Camera Flash':
 				FlxG.camera.flash(FlxColor.WHITE, 1);
+
+			case "Subtitles":
+				var subtitleText:String = value1;
+				var translated:String = LanguageManager.get(value1);
+				if (translated != "" && translated != value1)
+				{
+					subtitleText = translated;
+				}
+				var duration:Float = Std.parseFloat(value2);
+				if (Math.isNaN(duration)) duration = 2;
+				showSubtitle(subtitleText, duration);
 				
 			case 'Play Animation':
 				var char:Character = dad;
