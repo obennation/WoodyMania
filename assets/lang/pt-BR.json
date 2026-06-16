@@ -56,7 +56,7 @@
 
         "notes.quantsenabled": "Quants Ativados",
         "notes.notesplashes": "Notas Splash",
-        "notes.opponentnotes": "Notas do oponente",
+        "notes.opponentnotes": "Notas do Oponente",
 
         "notes.quantsenabled.text": "As notas coloridas no jogo são baseadas no valor do seu toque. Isso ajuda a controlar o tempo das suas acertos nas notas.",
         "notes.notesplashes.text": "Se desmarcado, clicar nas notas \"Sick!\" não exibirá partículas.",
@@ -101,15 +101,15 @@
         "graphics.shaders.text": "Se marcado, os shaders serão ativados em todo o mod.",
         "graphics.antialiasing.text": "Se desmarcado, desativa o anti-aliasing, aumenta o desempenho, mas com visuais menos nítidos.",
         "graphics.timebar.text": "O que a barra de tempo deve exibir?",
-        "graphics.debugdisplaytype.text": "Controla o tipo de informação a ser exibida no canto superior esquerdo da tela. Simples exibe FPS e memória, e avançado exibe os mesmos valores juntamente com informações de debug. Desativado desativa o contador completamente.",
+        "graphics.debugdisplaytype.text": "Controla o tipo de informação a ser exibida no canto superior esquerdo da tela. Simples exibe FPS e memória, e avançado exibe os mesmos valores juntamente com informações de debug. Se desmarcado, desativa o o contador completamente.",
         "graphics.framerate.text": "Bem autoexplicativo, não é?",
 
         "visuals.hidehud": "Esconder HUD",
         "visuals.showratings": "Mostrar Ratings",
         "visuals.healthbaralpha": "Opac. da Barra de Saude",
-        "visuals.underlaytype": "Sobreposicionamento",
+        "visuals.underlaytype": "Sobreposicao",
         "visuals.laneunderlay": "Fundo das Notas",
-        "visuals.screendim": "Escurecimento da Tela",
+        "visuals.screendim": "Esc. da tela",
         "visuals.underlayalpha": "Opac. da Camada Inferior",
         "visuals.scoretext": "Pontuacao Pula ao Acertar",
         "visuals.camerazooms": "Zoom da Camera",

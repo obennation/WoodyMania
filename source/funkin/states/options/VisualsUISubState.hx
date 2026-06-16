@@ -27,7 +27,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 		
-		var option:Option = new Option(LanguageManager.get("visuals.underlaytype"), LanguageManager.get("visuals.underlaytype.text"), 'underlayType', STRING, LanguageManager.get("visuals.laneunderlay"), UnderlayType.toArray());
+		var option:Option = new Option(LanguageManager.get("visuals.underlaytype"), LanguageManager.get("visuals.underlaytype.text"), 'underlayType', STRING, 'Lane Underlay', UnderlayType.toArray());
 		addOption(option);
 		
 		var option:Option = new Option(LanguageManager.get("visuals.underlayalpha"), LanguageManager.get("visuals.underlayalpha.text"), 'underlayOpacity', PERCENT, 0);

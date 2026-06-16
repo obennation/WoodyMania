@@ -28,7 +28,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeAntiAliasing; // Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 		
-		var option:Option = new Option(LanguageManager.get("graphics.debugdisplaytype"), LanguageManager.get("graphics.debugdisplaytype.text"), 'fpsDisplayType', STRING, LanguageManager.get("graphics.simple"), [LanguageManager.get("graphics.simple"), LanguageManager.get("graphics.advanced"), LanguageManager.get("graphics.disabled")]);
+		var option:Option = new Option(LanguageManager.get("graphics.debugdisplaytype"), LanguageManager.get("graphics.debugdisplaytype.text"), 'fpsDisplayType', STRING, "Simple", ["Simple", "Advanced", "Disabled"]);
 		addOption(option);
 		
 		var option:Option = new Option(LanguageManager.get("graphics.framerate"), LanguageManager.get("graphics.framerate.text"), 'framerate', INT, 60);

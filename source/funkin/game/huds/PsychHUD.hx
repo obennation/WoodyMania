@@ -90,7 +90,7 @@ class PsychHUD extends BaseHUD
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 		
-		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
+		var showTime:Bool = (ClientPrefs.timeBarType != LanguageManager.get("graphics.disabled"));
 		timeTxt = new FlxText(0, 19, FlxG.width, "", 32);
 		timeTxt.setFormat(Paths.DEFAULT_FONT, 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
@@ -98,7 +98,7 @@ class PsychHUD extends BaseHUD
 		timeTxt.borderSize = 2;
 		timeTxt.visible = parent.updateTime = showTime;
 		if (ClientPrefs.downScroll) timeTxt.y = FlxG.height - 44;
-		if (ClientPrefs.timeBarType == 'Song Name') timeTxt.text = PlayState.SONG.song;
+		if (ClientPrefs.timeBarType == LanguageManager.get("graphics.songname")) timeTxt.text = PlayState.SONG.song;
 		
 		final timeGraphic = FunkinAssets.exists(Paths.mods('images/${Paths.UI_PREFIX}timeBar')) ? '${Paths.UI_PREFIX}timeBar' : 'UI/timeBar';
 		
@@ -271,12 +271,12 @@ class PsychHUD extends BaseHUD
 			parent.songPercent = (curTime / parent.songLength);
 			
 			var songCalc:Float = (parent.songLength - curTime);
-			if (ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
+			if (ClientPrefs.timeBarType == LanguageManager.get("graphics.timeelapsed")) songCalc = curTime;
 			
 			var secondsTotal:Int = Math.floor(songCalc / 1000);
 			if (secondsTotal < 0) secondsTotal = 0;
 			
-			if (ClientPrefs.timeBarType != 'Song Name') timeTxt.text = flixel.util.FlxStringUtil.formatTime(secondsTotal, false);
+			if (ClientPrefs.timeBarType != LanguageManager.get("graphics.songname")) timeTxt.text = flixel.util.FlxStringUtil.formatTime(secondsTotal, false);
 		}
 	}
 	

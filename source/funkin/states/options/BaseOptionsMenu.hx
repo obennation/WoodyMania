@@ -10,6 +10,7 @@ import flixel.FlxSprite;
 import funkin.objects.*;
 import funkin.backend.MusicBeatSubstate;
 import funkin.objects.Character;
+import funkin.backend.LanguageManager;
 
 class BaseOptionsMenu extends MusicBeatSubstate
 {
@@ -308,6 +309,20 @@ class BaseOptionsMenu extends MusicBeatSubstate
     	if (option.type == 'percent') val *= 100;
 
     	var def:Dynamic = option.defaultValue;
+
+		switch(option.getValue())
+		{
+			case "Screen Dim":
+				val = LanguageManager.get("visuals.screendim");
+			case "Lane Underlay":
+				val = LanguageManager.get("visuals.laneunderlay");
+			case "Simple":
+				val = LanguageManager.get("graphics.simple");
+			case "Advanced":
+				val = LanguageManager.get("graphics.advanced");
+			case "Disabled":
+				val = LanguageManager.get("graphics.disabled");
+		}
     	option.text = text.replace('%v', '$val').replace('%d', '$def');
 	}
 	
