@@ -327,8 +327,8 @@ class PsychHUD extends BaseHUD
 			
 			if (comboTween)
 			{
-				ratingGraphic.scale.set(0.785, 0.785);
-				FlxTween.tween(ratingGraphic.scale, {x: 0.7, y: 0.7}, 0.5, {ease: FlxEase.expoOut});
+				ratingGraphic.scale.set(0.5, 0.5);
+				FlxTween.tween(ratingGraphic.scale, {x: 0.6, y: 0.6}, 0.5, {ease: FlxEase.expoOut});
 			}
 			ratingGraphic.updateHitbox();
 			FlxTween.tween(ratingGraphic, {alpha: 0}, 0.5, {startDelay: Conductor.stepCrotchet * 0.01, ease: FlxEase.expoOut});
@@ -363,16 +363,16 @@ class PsychHUD extends BaseHUD
 				numScore.loadGraphic(Paths.image(comboPrefix + 'num' + Std.int(i) + ratingSuffix));
 				numScore.alpha = 1;
 				numScore.screenCenter();
-				numScore.x = posX + (43 * daLoop) - 90;
+				numScore.x = posX + (36 * daLoop) - 90;
 				numScore.y += 80;
 				numScore.x += comboOffsets[2];
 				numScore.y -= comboOffsets[3];
 				
 				if (comboTween)
 				{
-					numScore.scale.set(0.6, 0.6);
+					numScore.scale.set(0.35, 0.35);
 					FlxTween.cancelTweensOf(numScore, ['scale.x', 'scale.y']);
-					FlxTween.tween(numScore.scale, {x: 0.5, y: 0.5}, 0.5, {ease: FlxEase.expoOut});
+					FlxTween.tween(numScore.scale, {x: 0.4, y: 0.4}, 0.5, {ease: FlxEase.expoOut});
 				}
 				numScore.updateHitbox();
 				ratingNumGroup.add(numScore);
