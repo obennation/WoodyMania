@@ -120,7 +120,7 @@
         "visuals.hidehud.text": "Se marcado, oculta a maioria dos elementos da interface.",
         "visuals.showratings.text": "Se marcado, os gráficos de Ratings aparecerão na sua interface.",
         "visuals.healthbaralpha.text": "Qual o nível de opacidade da barra de vida e dos ícones?",
-        "visuals.underlaytype.text": "Qual a função da sobreposição da pista?",
+        "visuals.underlaytype.text": "Qual o tipo da sobreposição da nota?",
         "visuals.underlayalpha.text": "Qual o nível de opacidade da barra de vida e dos ícones?",
         "visuals.scoretext.text": "Se desmarcado, desativa o zoom do texto da pontuação sempre que você acerta uma nota.",
         "visuals.camerazooms.text": "Se desmarcado, a câmera não dará zoom ao acertar uma nota.",
