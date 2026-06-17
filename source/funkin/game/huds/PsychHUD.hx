@@ -44,6 +44,7 @@ class PsychHUD extends BaseHUD
 	var comboTween:Bool = true;
 	
 	var textDivider = '•';
+	var textDividerOlder = '|';
 	var showRating:Bool = ClientPrefs.showRatings;
 	var showRatingNum:Bool = ClientPrefs.showRatings;
 	var showCombo:Bool = ClientPrefs.showRatings;
@@ -51,10 +52,14 @@ class PsychHUD extends BaseHUD
 	var updateIconScale:Bool = true;
 	var comboOffsets:Null<Array<Int>> = null; // So u can overwrite the users combo offset if needed without messing with clientprefs
 	
+	var isOlder:Bool = false;
+	
 	// TODO: Make combo shit change for week 6, the ground work is already there so incase someone else wants to come on in and mess w it.
 	override function init()
 	{
 		name = 'PSYCH';
+		
+		isOlder = PlayState.SONG.song.toLowerCase() == "older";
 		
 		ratingPrefix = Paths.RATINGS_PREFIX;
 		comboPrefix = Paths.COMBO_PREFIX;
@@ -83,8 +88,16 @@ class PsychHUD extends BaseHUD
 		iconP2.alphaMultipler = ClientPrefs.healthBarAlpha;
 		add(iconP2);
 		
-		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.DEFAULT_FONT, 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(isOlder ? healthBar.x : 0, healthBar.y + (isOlder ? 28 : 40), isOlder ? healthBar.width : FlxG.width,"", isOlder ? 16 : 20);
+		scoreTxt.setFormat(
+			isOlder ? Paths.font("vcr.ttf") : Paths.DEFAULT_FONT,
+			isOlder ? 16 : 20,
+			FlxColor.WHITE,
+			isOlder ? RIGHT : CENTER,
+			FlxTextBorderStyle.OUTLINE,
+			FlxColor.BLACK
+		);
+
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.hideHud;
@@ -92,7 +105,14 @@ class PsychHUD extends BaseHUD
 		
 		var showTime:Bool = (ClientPrefs.timeBarType != LanguageManager.get("graphics.disabled"));
 		timeTxt = new FlxText(0, 19, FlxG.width, "", 32);
-		timeTxt.setFormat(Paths.DEFAULT_FONT, 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		timeTxt.setFormat(
+			isOlder ? Paths.font("vcr.ttf") : Paths.DEFAULT_FONT,
+			isOlder ? 16 : 32,
+			FlxColor.WHITE,
+			CENTER,
+			FlxTextBorderStyle.OUTLINE,
+			FlxColor.BLACK
+		);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
@@ -100,7 +120,13 @@ class PsychHUD extends BaseHUD
 		if (ClientPrefs.downScroll) timeTxt.y = FlxG.height - 44;
 		if (ClientPrefs.timeBarType == LanguageManager.get("graphics.songname")) timeTxt.text = PlayState.SONG.song;
 		
-		final timeGraphic = FunkinAssets.exists(Paths.mods('images/${Paths.UI_PREFIX}timeBar')) ? '${Paths.UI_PREFIX}timeBar' : 'UI/timeBar';
+		final timeGraphic = isOlder
+            ? (FunkinAssets.exists(Paths.mods('images/${Paths.UI_PREFIX}healthBar'))
+		    ? '${Paths.UI_PREFIX}healthBar'
+		    : 'UI/healthBar')
+	        : (FunkinAssets.exists(Paths.mods('images/${Paths.UI_PREFIX}timeBar'))
+		    ? '${Paths.UI_PREFIX}timeBar'
+		: 'UI/timeBar');
 		
 		timeBar = new Bar(0, timeTxt.y + (timeTxt.height / 4), timeGraphic, function() return parent.songPercent, 0, 1);
 		timeBar.scrollFactor.set();
@@ -110,6 +136,15 @@ class PsychHUD extends BaseHUD
 		add(timeBar);
 		add(timeTxt);
 		
+		if (isOlder)
+		{
+			timeBar.setColors(FlxColor.LIME, FlxColor.GRAY);
+            scoreTxt.x += 10;
+			scoreTxt.y += 25;
+			timeTxt.y += 4;
+			timeTxt.borderSize = 1;
+		}
+
 		ratingGraphic = new FlxSprite();
 		ratingGraphic.alpha = 0;
 		add(ratingGraphic);
@@ -132,7 +167,7 @@ class PsychHUD extends BaseHUD
 		
 		if (comboOffsets == null)
 		{
-			comboOffsets = ClientPrefs.comboOffset;
+			comboOffsets = ClientPrefs.downScroll ? ClientPrefs.comboOffsetDown : ClientPrefs.comboOffset;
 		}
 	}
 	
@@ -151,9 +186,9 @@ class PsychHUD extends BaseHUD
 		}
 		
 		final tempScore:String = LanguageManager.get("hud.score") + ': ${FlxStringUtil.formatMoney(score, false)}'
-			+ (!parent.instakillOnMiss ? ' $textDivider' + ' ' + LanguageManager.get("hud.misses") + ': ${misses}' : "")
-			+ ' $textDivider' + ' ' + LanguageManager.get("hud.accuracy") + ': ${str}';
-			
+			+ (!parent.instakillOnMiss ? ' ${isOlder ? textDividerOlder : textDivider} ' + LanguageManager.get("hud.misses") + ': ${misses}' : "")
+			+ ' ${isOlder ? textDividerOlder : textDivider} ' + LanguageManager.get("hud.accuracy") + ': ${str}';
+
 		if (!missed && !parent.cpuControlled) doScoreBop();
 		
 		scoreTxt.text = '${tempScore}\n';

@@ -125,6 +125,7 @@ class ClientPrefs
 	
 	// @saveVar public static var noteSkin:String = 'Vanilla';
 	@saveVar public static var comboOffset:Array<Int> = [125, 150, 220, 220];
+    @saveVar public static var comboOffsetDown:Array<Int> = [125, -320, 220, -120];
 	
 	@saveVar public static var gameplaySettings:Map<String, Dynamic> = [
 		'scrollspeed' => 1.0,
