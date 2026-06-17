@@ -103,7 +103,7 @@ class PsychHUD extends BaseHUD
 		scoreTxt.visible = !ClientPrefs.hideHud;
 		add(scoreTxt);
 		
-		var showTime:Bool = (ClientPrefs.timeBarType != LanguageManager.get("graphics.disabled"));
+		var showTime:Bool = (ClientPrefs.timeBarType != 'Disabled');
 		timeTxt = new FlxText(0, 19, FlxG.width, "", 32);
 		timeTxt.setFormat(
 			isOlder ? Paths.font("vcr.ttf") : Paths.DEFAULT_FONT,
@@ -118,7 +118,7 @@ class PsychHUD extends BaseHUD
 		timeTxt.borderSize = 2;
 		timeTxt.visible = parent.updateTime = showTime;
 		if (ClientPrefs.downScroll) timeTxt.y = FlxG.height - 44;
-		if (ClientPrefs.timeBarType == LanguageManager.get("graphics.songname")) timeTxt.text = PlayState.SONG.song;
+		if (ClientPrefs.timeBarType == 'Song Name') timeTxt.text = PlayState.SONG.song;
 		
 		final timeGraphic = isOlder
             ? (FunkinAssets.exists(Paths.mods('images/${Paths.UI_PREFIX}healthBar'))
@@ -129,6 +129,7 @@ class PsychHUD extends BaseHUD
 		: 'UI/timeBar');
 		
 		timeBar = new Bar(0, timeTxt.y + (timeTxt.height / 4), timeGraphic, function() return parent.songPercent, 0, 1);
+		timeBar.setColors(parent.dad.healthColour, FlxColor.BLACK);
 		timeBar.scrollFactor.set();
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
@@ -306,12 +307,12 @@ class PsychHUD extends BaseHUD
 			parent.songPercent = (curTime / parent.songLength);
 			
 			var songCalc:Float = (parent.songLength - curTime);
-			if (ClientPrefs.timeBarType == LanguageManager.get("graphics.timeelapsed")) songCalc = curTime;
+			if (ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
 			
 			var secondsTotal:Int = Math.floor(songCalc / 1000);
 			if (secondsTotal < 0) secondsTotal = 0;
 			
-			if (ClientPrefs.timeBarType != LanguageManager.get("graphics.songname")) timeTxt.text = flixel.util.FlxStringUtil.formatTime(secondsTotal, false);
+			if (ClientPrefs.timeBarType != 'Song Name') timeTxt.text = flixel.util.FlxStringUtil.formatTime(secondsTotal, false);
 		}
 	}
 	
@@ -331,6 +332,8 @@ class PsychHUD extends BaseHUD
 		reloadHealthBarColors();
 		iconP1.changeIcon(parent.boyfriend.healthIcon);
 		iconP2.changeIcon(parent.dad.healthIcon);
+
+		timeBar.setColors(parent.dad.healthColour, FlxColor.BLACK);
 	}
 	
 	override function onHealthChange(health:Float)

@@ -38,8 +38,7 @@ class VisualsUISubState extends BaseOptionsMenu
 		option.decimals = 1;
 		addOption(option);
 		
-		var option:Option = new Option(LanguageManager.get("graphics.timebar"), LanguageManager.get("graphics.timebar.text"), 'timeBarType', STRING, LanguageManager.get("graphics.timeleft"),
-		[LanguageManager.get("graphics.timeleft"), LanguageManager.get("graphics.timeelapsed"), LanguageManager.get("graphics.songname"), LanguageManager.get("graphics.disabled")]);
+		var option:Option = new Option(LanguageManager.get("graphics.timebar"), LanguageManager.get("graphics.timebar.text"), 'timeBarType', STRING, 'Time Left', ['Time Left', 'Time Elapsed', 'Song Name', 'Disabled']);
 		addOption(option);
 		
 		var option:Option = new Option(LanguageManager.get("visuals.scoretext"), LanguageManager.get("visuals.scoretext.text"), 'scoreZoom', BOOL, true);

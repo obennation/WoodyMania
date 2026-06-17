@@ -312,6 +312,12 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		switch(option.getValue())
 		{
+			case "Time Left":
+				val = LanguageManager.get("graphics.timeleft");
+			case "Time Elapsed":
+				val = LanguageManager.get("graphics.timeelapsed");
+			case "Song Name":
+				val = LanguageManager.get("graphics.songname");
 			case "Screen Dim":
 				val = LanguageManager.get("visuals.screendim");
 			case "Lane Underlay":
