@@ -1767,6 +1767,11 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 		input.update();
 
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			boyfriend.playAnimForDuration('hey', false);
+		}
+
 		if (vidPlaying && skippableVideo && FlxG.keys.justPressed.SPACE)
 		{
     		vidPlaying = false;
@@ -1777,8 +1782,8 @@ class PlayState extends MusicBeatState
     		        ease: FlxEase.quadOut,
     		        onComplete: function(_)
     		        {
-   		             video.stop();
-   		             onVidEnd();
+   		                video.stop();
+   		                onVidEnd();
     		        }
     		    });
     		}
