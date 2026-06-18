@@ -424,6 +424,7 @@ class PlayState extends MusicBeatState
 	var blackYnot:FlxSprite;
 	var vidPlaying:Bool = false;
 	var skippingVideo:Bool = false;
+	var endingCutscene:Bool = false;
 
 	public var videoCheckStory:Bool = true;
 	public var skippableVideo:Bool = true;
@@ -2639,7 +2640,15 @@ class PlayState extends MusicBeatState
     	blackYnot.camera = camOther;
     	blackYnot.alpha = 1;
 
-    	startCountdown();
+		if (endingCutscene)
+		{
+		    endingCutscene = false;
+		    endSong();
+		}
+		else
+		{
+		    startCountdown();
+		}
 
     	FlxTween.tween(blackYnot, {alpha: 0}, 0.35, {
     	    ease: FlxEase.quadInOut,
