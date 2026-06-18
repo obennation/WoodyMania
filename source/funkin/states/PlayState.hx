@@ -420,6 +420,14 @@ class PlayState extends MusicBeatState
 	public var subtitleTimer:FlxTimer;
 	public var subtitleBox:FlxSprite;
 	public var subtitleTxt:FlxText;
+
+	var blackYnot:FlxSprite;
+	var vidPlaying:Bool = false;
+	var skippingVideo:Bool = false;
+
+	public var videoCheckStory:Bool = true;
+	public var skippableVideo:Bool = true;
+	public var video:FunkinVideoSprite;
 	
 	/**
 	 * Default camera zoom the game will attempt to return to.
@@ -840,7 +848,8 @@ class PlayState extends MusicBeatState
 			songStartCallback = startCountdown;
 		}
 		
-		songStartCallback();
+		if (!inCutscene && !vidPlaying)
+			songStartCallback();
 		
 		RecalculateRating();
 		updateScoreBar();
@@ -1034,6 +1043,8 @@ class PlayState extends MusicBeatState
 	
 	public function startCountdown():Void
 	{
+		if (inCutscene || vidPlaying) return;
+
 		if (startedCountdown)
 		{
 			scripts.call('onStartCountdown', []);
@@ -1754,6 +1765,19 @@ class PlayState extends MusicBeatState
 		
 		super.update(elapsed);
 		input.update();
+
+		if (vidPlaying && skippableVideo && FlxG.keys.justPressed.SPACE)
+		{
+			vidPlaying = false;
+
+			if (video != null)
+			{
+				video.visible = false;
+				video.stop();
+			}
+
+			onVidEnd();
+		}
 		
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
@@ -2576,6 +2600,84 @@ class PlayState extends MusicBeatState
 		
 		scripts.set('whosTurn', isDad ? 'dad' : 'boyfriend');
 	}
+
+	function onVidEnd()
+	{
+    	if (video != null)
+    	{
+    	    video.kill();
+    	    video.destroy();
+    	    FlxG.state.remove(video, true);
+    	    video = null;
+    	}
+
+    	camGame.visible = true;
+    	camHUD.visible = true;
+
+    	inCutscene = false;
+    	vidPlaying = false;
+
+    	FlxG.state.persistentUpdate = true;
+    	FlxG.state.persistentDraw = true;
+
+    	if (blackYnot != null)
+    	{
+    	    FlxTween.tween(blackYnot, {alpha: 0}, 0.5, {
+    	        onComplete: function(_)
+     	       {
+    	            blackYnot.kill();
+     	           blackYnot = null;
+     	           startCountdown();
+        	    }
+        	});
+    	}
+    	else
+    	{
+    	    startCountdown();
+    	}
+	}
+
+	public function videoCutscene(?vid:String = 'upapayuma', ?canSkip:Bool, ?onEnd:Void->Void, ?onFormat:Void->Void)
+	{
+    	if ((videoCheckStory && !isStoryMode) || PlayState.seenCutscene) return;
+
+    	inCutscene = true;
+    	vidPlaying = true;
+    	skippableVideo = (canSkip ?? true);
+
+    	camGame.visible = false;
+    	camHUD.visible = false;
+
+    	FlxG.state.persistentUpdate = false;
+    	FlxG.state.persistentDraw = false;
+
+    	blackYnot = new FlxSprite().makeGraphic(FlxG.width + 3, FlxG.height, FlxColor.BLACK);
+    	blackYnot.camera = camOther;
+    	add(blackYnot);
+
+    	video = new FunkinVideoSprite();
+
+    	video.onEnd(onVidEnd);
+
+    	video.onFormat(() -> {
+    	    vidPlaying = true;
+    	    camGame.visible = false;
+
+    	    video.camera = camOther;
+    	    video.setGraphicSize(0, FlxG.height);
+    	    video.updateHitbox();
+    	    video.screenCenter();
+    	});
+
+    	add(video);
+
+    	if (onEnd != null) video.onEnd(onEnd);
+    	if (onFormat != null) video.onFormat(onFormat);
+
+    	var path:String = Paths.video(Paths.sanitize(vid));
+    	video.load(path);
+    	video.play();
+	}
 	
 	/**
 	 * 'Snaps the camera to a position.'
@@ -2640,9 +2742,10 @@ class PlayState extends MusicBeatState
 		updateTime = false;
 		
 		deathCounter = 0;
-		seenCutscene = false;
 		
 		final ret:Dynamic = scripts.call('onEndSong', []);
+
+		seenCutscene = false;
 		
 		if (ret != ScriptConstants.STOP_FUNC && !transitioning)
 		{
