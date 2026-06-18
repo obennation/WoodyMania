@@ -1768,15 +1768,19 @@ class PlayState extends MusicBeatState
 
 		if (vidPlaying && skippableVideo && FlxG.keys.justPressed.SPACE)
 		{
-			vidPlaying = false;
+    		vidPlaying = false;
 
-			if (video != null)
-			{
-				video.visible = false;
-				video.stop();
-			}
-
-			onVidEnd();
+    		if (video != null)
+    		{
+    		    FlxTween.tween(video, {alpha: 0}, 0.25, {
+    		        ease: FlxEase.quadOut,
+    		        onComplete: function(_)
+    		        {
+   		             video.stop();
+   		             onVidEnd();
+    		        }
+    		    });
+    		}
 		}
 		
 		if (controls.PAUSE && startedCountdown && canPause)
@@ -2611,30 +2615,40 @@ class PlayState extends MusicBeatState
     	    video = null;
     	}
 
-    	camGame.visible = true;
-    	camHUD.visible = true;
-
     	inCutscene = false;
     	vidPlaying = false;
 
-    	FlxG.state.persistentUpdate = true;
-    	FlxG.state.persistentDraw = true;
+    	persistentUpdate = true;
+    	persistentDraw = true;
 
-    	if (blackYnot != null)
+    	camGame.visible = true;
+    	camHUD.visible = true;
+
+    	if (blackYnot == null)
     	{
-    	    FlxTween.tween(blackYnot, {alpha: 0}, 0.5, {
-    	        onComplete: function(_)
-     	       {
-    	            blackYnot.kill();
-     	           blackYnot = null;
-     	           startCountdown();
-        	    }
-        	});
+    	    blackYnot = new FlxSprite().makeGraphic(
+    	        FlxG.width + 3,
+    	        FlxG.height,
+    	        FlxColor.BLACK
+    	    );
+    	    blackYnot.camera = camOther;
+    	    add(blackYnot);
     	}
-    	else
-    	{
-    	    startCountdown();
-    	}
+
+    	blackYnot.revive();
+    	blackYnot.camera = camOther;
+    	blackYnot.alpha = 1;
+
+    	startCountdown();
+
+    	FlxTween.tween(blackYnot, {alpha: 0}, 0.35, {
+    	    ease: FlxEase.quadInOut,
+    	    onComplete: function(_)
+    	    {
+    	        blackYnot.kill();
+    	        blackYnot = null;
+    	    }
+    	});
 	}
 
 	public function videoCutscene(?vid:String = 'upapayuma', ?canSkip:Bool, ?onEnd:Void->Void, ?onFormat:Void->Void)
@@ -2660,23 +2674,31 @@ class PlayState extends MusicBeatState
     	video.onEnd(onVidEnd);
 
     	video.onFormat(() -> {
-    	    vidPlaying = true;
-    	    camGame.visible = false;
+        	vidPlaying = true;
+        	camGame.visible = false;
 
-    	    video.camera = camOther;
-    	    video.setGraphicSize(0, FlxG.height);
-    	    video.updateHitbox();
-    	    video.screenCenter();
+        	video.camera = camOther;
+        	video.setGraphicSize(0, FlxG.height);
+        	video.updateHitbox();
+        	video.screenCenter();
+
+        	if (blackYnot != null)
+        	{
+        	    blackYnot.alpha = 1;
+        	    FlxTween.tween(blackYnot, {alpha: 0}, 0.5);
+        	}
     	});
 
     	add(video);
 
     	if (onEnd != null) video.onEnd(onEnd);
-    	if (onFormat != null) video.onFormat(onFormat);
-
-    	var path:String = Paths.video(Paths.sanitize(vid));
-    	video.load(path);
-    	video.play();
+		if (onFormat != null) video.onFormat(onFormat);
+		if (video.load(Paths.video(Paths.sanitize(vid))))
+		{
+		    FlxTimer.wait(0.01, () -> {
+		        video.play();
+		    });
+		}
 	}
 	
 	/**
