@@ -55,6 +55,8 @@ class CreditsState extends MusicBeatState
 		['bennation', 'bennation', LanguageManager.get("credits.bennation"), 'https://twitter.com/eobennation', '0xFF233DA9'],
 		['gi', 'gi', LanguageManager.get("credits.gi"), 'https://twitter.com/gebyongaku', '0xFF53B7D8'],
 		['Jooj Dumwell', 'jooj', LanguageManager.get("credits.joojdumwell"), 'https://twitter.com/JooJ_Dumwell99', '0xFFFFFFFF'],
+		['AquelaAylaLa', 'ayla', LanguageManager.get("credits.aquelaaylala"), 'https://twitter.com/AquelaAylaLa', '0xFFFFFFFF'],
+		['Spike', 'spk', LanguageManager.get("credits.spk"), 'https://x.com/SHdgehog', '0xFFFF9900'],
 		[''],
 		['NIGHTMARE VISION TEAM'],
 		['DuskieWhy', 'duskie', LanguageManager.get("credits.duskiewhy"), 'https://twitter.com/DuskieWhy', '0xA8324A'],
