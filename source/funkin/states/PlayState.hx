@@ -2200,7 +2200,11 @@ class PlayState extends MusicBeatState
 		subtitleBox.makeGraphic(boxW, boxH, FlxColor.BLACK);
 
 		subtitleBox.x = (FlxG.width - boxW) / 2;
-		subtitleBox.y = FlxG.height - 140;
+
+		if (ClientPrefs.downScroll)
+			subtitleBox.y = 140;
+		else
+			subtitleBox.y = FlxG.height - 140;
 
 		subtitleTxt.x = subtitleBox.x + (paddingX / 2);
 		subtitleTxt.y = subtitleBox.y + (paddingY / 2) - 2;
