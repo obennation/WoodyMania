@@ -63,6 +63,8 @@ class ClientPrefs
 	
 	// visuals ------------------------------------------------------------------------//
 	@saveVar public static var jumpGhosts:Bool = false;
+
+	@saveVar public static var subtitles:Bool = true;
 	
 	@saveVar public static var noteSplashes:Bool = true;
 	

@@ -1093,21 +1093,33 @@ class PlayState extends MusicBeatState
 					{
 						case 0:
 							if (countdownSounds) FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
+							if (ClientPrefs.subtitles)
+							{
+								showSubtitle(LanguageManager.get("play.three"), 1);
+							}
 						case 1:
 							countdownReady = makeCountdownSprite(introAlts[0]);
 							insert(members.indexOf(notes), countdownReady);
-							
+							if (ClientPrefs.subtitles)
+							{
+								showSubtitle(LanguageManager.get("play.two"), 1);
+							}
 							if (countdownSounds) FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						case 2:
 							countdownSet = makeCountdownSprite(introAlts[1]);
 							insert(members.indexOf(notes), countdownSet);
-							
+							if (ClientPrefs.subtitles)
+							{
+								showSubtitle(LanguageManager.get("play.one"), 1);
+							}
 							if (countdownSounds) FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						case 3:
 							countdownGo = makeCountdownSprite(introAlts[2]);
-							
 							insert(members.indexOf(notes), countdownGo);
-							
+							if (ClientPrefs.subtitles)
+							{
+								showSubtitle(LanguageManager.get("play.go"), 0.7);
+							}
 							if (countdownSounds) FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 							
 						case 4:
@@ -2312,7 +2324,10 @@ class PlayState extends MusicBeatState
 				}
 				var duration:Float = Std.parseFloat(value2);
 				if (Math.isNaN(duration)) duration = 2;
-				showSubtitle(subtitleText, duration);
+				if (ClientPrefs.subtitles)
+				{
+					showSubtitle(subtitleText, duration);
+				}
 				
 			case 'Play Animation':
 				var char:Character = dad;

@@ -12,6 +12,9 @@ class VisualsUISubState extends BaseOptionsMenu
 	{
 		title = LanguageManager.get("options.visuals");
 		rpcTitle = 'Visuals & UI Settings Menu'; // for Discord Rich Presence
+
+		var option:Option = new Option(LanguageManager.get("visuals.subtitles"), LanguageManager.get("visuals.subtitles.text"), 'subtitles', BOOL, false);
+		addOption(option);
 		
 		var option:Option = new Option(LanguageManager.get("visuals.hidehud"), LanguageManager.get("visuals.hidehud.text"), 'hideHud', BOOL, false);
 		addOption(option);

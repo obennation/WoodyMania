@@ -11,6 +11,11 @@
         Pressione ESCAPE para ignorar esta mensagem.\n
         Você foi avisado!",
 
+        "play.three": "Três",
+        "play.two": "Três, Dois",
+        "play.one": "Três, Dois, Um",
+        "play.go": "Já!",
+
         "storymode.score": "PONTUAÇÃO",
         "storymode.tutorial": "Aprendendo o Jogo",
         "storymode.week1": "Bem-vindo à Woody City",
@@ -114,6 +119,7 @@
         "graphics.debugdisplaytype.text": "Controla o tipo de informação a ser exibida no canto superior esquerdo da tela. Simples exibe FPS e memória, e avançado exibe os mesmos valores juntamente com informações de debug. Se desmarcado, desativa o o contador completamente.",
         "graphics.framerate.text": "Bem autoexplicativo, não é?",
 
+        "visuals.subtitles": "Legendas",
         "visuals.hidehud": "Esconder HUD",
         "visuals.showratings": "Mostrar Ratings",
         "visuals.healthbaralpha": "Opac. da Barra de Saude",
@@ -127,6 +133,7 @@
         "visuals.jumpghosts": "Saltos Fantasmas",
         "visuals.cameranotefollow": "Camera seguindo as Notas",
 
+        "visuals.subtitles.text": "Se desmarcado, desativa todas as legendas de texto em cutscenes ou em músicas.",
         "visuals.hidehud.text": "Se marcado, oculta a maioria dos elementos da interface.",
         "visuals.showratings.text": "Se marcado, os gráficos de Ratings aparecerão na sua interface.",
         "visuals.healthbaralpha.text": "Qual o nível de opacidade da barra de vida e dos ícones?",

@@ -11,6 +11,11 @@
 		Press ESCAPE to ignore this message.\n
 		You've been warned!",
 
+        "play.three": "Three",
+        "play.two": "Three, Two",
+        "play.one": "Three, Two, One",
+        "play.go": "Go!",
+
         "storymode.score": "HIGHSCORE",
         "storymode.tutorial": "Learning the Game",
         "storymode.week1": "Welcome to Woody City",
@@ -116,6 +121,7 @@
         "graphics.debugdisplaytype.text": "Handles what type of information to display in the top left of your screen.\nSimple displays FPS & Memory, and advanced displays the same alongside debug information.\nDisabled disables the counter entirely.",
         "graphics.framerate.text": "Pretty self explanatory, isn't it?",
 
+        "visuals.subtitles": "Subtitles",
         "visuals.hidehud": "Hide HUD",
         "visuals.showratings": "Show Ratings",
         "visuals.healthbaralpha": "Health Bar Transparency",
@@ -129,6 +135,7 @@
         "visuals.jumpghosts": "Jump Ghosts",
         "visuals.cameranotefollow": "Camera Note Follow",
 
+        "visuals.subtitles.text": "If unchecked, disables all text subtitles in cutscenes or songs.",
         "visuals.hidehud.text": "If checked, hides most HUD elements.",
         "visuals.showratings.text": "If checked, rating graphics will appear on your HUD.",
         "visuals.healthbaralpha.text": "How much transparent should the health bar and icons be.",
