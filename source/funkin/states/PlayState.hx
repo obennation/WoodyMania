@@ -771,14 +771,14 @@ class PlayState extends MusicBeatState
 		subtitleBox = new FlxSprite();
 		subtitleBox.alpha = 0.6;
 		subtitleBox.visible = false;
-		subtitleBox.cameras = [camHUD];
+		subtitleBox.cameras = [camOther];
 		add(subtitleBox);
 
 		subtitleTxt = new FlxText(0, 0, 0, "", 24);
 		subtitleTxt.setFormat(Paths.DEFAULT_FONT, 24, FlxColor.WHITE, CENTER);
 		subtitleTxt.scrollFactor.set();
 		subtitleTxt.visible = false;
-		subtitleTxt.cameras = [camHUD];
+		subtitleTxt.cameras = [camOther];
 		add(subtitleTxt);
 		
 		meta = SongMeta.getFromSong();
@@ -2182,7 +2182,7 @@ class PlayState extends MusicBeatState
 		callHUDFunc(hud -> hud.onCharacterChange());
 	}
 
-	function showSubtitle(text:String, duration:Float)
+	public function showSubtitle(text:String, duration:Float)
 	{
 		if (subtitleTimer != null)
 			subtitleTimer.cancel();
