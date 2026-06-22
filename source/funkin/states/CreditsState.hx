@@ -51,19 +51,19 @@ class CreditsState extends MusicBeatState
 {
 	@:unreflective
 	var hardcodedCredits:Array<Array<String>> = [
-		['WOODY MANIA TEAM'],
+		[LanguageManager.get("credits.woodymaniateam")],
 		['bennation', 'bennation', LanguageManager.get("credits.bennation"), 'https://twitter.com/eobennation', '0xFF233DA9'],
 		['gi', 'gi', LanguageManager.get("credits.gi"), 'https://twitter.com/gebyongaku', '0xFF53B7D8'],
 		['Jooj Dumwell', 'jooj', LanguageManager.get("credits.joojdumwell"), 'https://twitter.com/JooJ_Dumwell99', '0xFFFFFFFF'],
 		['AquelaAylaLa', 'ayla', LanguageManager.get("credits.aquelaaylala"), 'https://twitter.com/AquelaAylaLa', '0xFFFFFFFF'],
 		['Spike', 'spk', LanguageManager.get("credits.spk"), 'https://x.com/SHdgehog', '0xFFFF9900'],
 		[''],
-		['NIGHTMARE VISION TEAM'],
+		[LanguageManager.get("credits.nightmarevisionteam")],
 		['DuskieWhy', 'duskie', LanguageManager.get("credits.duskiewhy"), 'https://twitter.com/DuskieWhy', '0xA8324A'],
 		['data5', 'data', LanguageManager.get("credits.data5"), 'https://x.com/_data5', '0xF9A250'],
 		['NebulaZorua', 'neb', LanguageManager.get("credits.nebulazorua"), 'https://twitter.com/Nebula_Zorua', '0x9B00B3'],
 		['JoggingScout', 'joggingscout', LanguageManager.get("credits.joggingscout"), 'https://twitter.com/JoggingScout', '0x3366CC'],
-		['Iseta', 'iseta', 'Artista', LanguageManager.get("credits.iseta"), '0x6ede0b']
+		['Iseta', 'iseta', LanguageManager.get("credits.iseta"), 'https://twitter.com/Isetaaaaa', '0x6ede0b']
 	];
 	
 	var curSelected:Int = -1;
