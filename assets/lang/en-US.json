@@ -2,7 +2,15 @@
     "name": "English",
     "translation_credits": "bennation",
     "lang": {
-        
+        "title.present": "present",
+        "title.madeon": "Made on",
+
+        "flashlights.warntext": "Hey, watch out!\n
+		This Mod contains some flashing lights!\n
+		Press ENTER to disable them now or go to Options Menu.\n
+		Press ESCAPE to ignore this message.\n
+		You've been warned!",
+
         "storymode.score": "HIGHSCORE",
         "storymode.tutorial": "Learning the Game",
         "storymode.week1": "Welcome to Woody City",

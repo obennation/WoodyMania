@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="benny.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="benny0000" x="0" y="0" width="885" height="1473"/>
+	<SubTexture name="benny0001" x="0" y="0" width="885" height="1473"/>
+	<SubTexture name="benny0002" x="0" y="0" width="885" height="1473"/>
+	<SubTexture name="benny0003" x="0" y="0" width="885" height="1473"/>
+	<SubTexture name="benny0004" x="885" y="0" width="884" height="1472" frameX="-1" frameY="-1" frameWidth="885" frameHeight="1473"/>
+	<SubTexture name="benny0005" x="885" y="0" width="884" height="1472" frameX="-1" frameY="-1" frameWidth="885" frameHeight="1473"/>
+	<SubTexture name="benny0006" x="885" y="0" width="884" height="1472" frameX="-1" frameY="-1" frameWidth="885" frameHeight="1473"/>
+	<SubTexture name="benny0007" x="885" y="0" width="884" height="1472" frameX="-1" frameY="-1" frameWidth="885" frameHeight="1473"/>
+</TextureAtlas>

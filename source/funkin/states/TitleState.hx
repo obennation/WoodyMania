@@ -11,6 +11,8 @@ import funkin.game.shaders.ColorSwap;
 import funkin.data.WeekData;
 import funkin.objects.Alphabet;
 
+import funkin.backend.LanguageManager;
+
 @:nullSafety
 class TitleState extends MusicBeatState
 {
@@ -20,7 +22,7 @@ class TitleState extends MusicBeatState
 	var skippedIntro:Bool = false;
 	var transitioning:Bool = false;
 	
-	var introEndingText:Array<String> = ['VS BENNY', 'WOODY', 'MANIA'];
+	var introEndingText:Array<String> = ['FNF', 'WOODY', 'MANIA'];
 	var randomIntroText:Array<String> = [];
 	
 	// objects
@@ -95,11 +97,12 @@ class TitleState extends MusicBeatState
 			textGroup = new FlxGroup();
 			add(textGroup);
 			
-			ngSpr = new FlxSprite(0, FlxG.height * 0.52, Paths.image('menus/title/newgrounds_logo'));
+			ngSpr = new FlxSprite(0, FlxG.height * 0.52, Paths.image('menus/title/nmv_logo'));
 			add(ngSpr);
 			ngSpr.visible = false;
 			ngSpr.scale.scale(0.8);
 			ngSpr.updateHitbox();
+			ngSpr.y -= 100;
 			ngSpr.screenCenter(X);
 			
 			logo.alpha = 0.001;
@@ -232,15 +235,14 @@ class TitleState extends MusicBeatState
 					
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+					createCoolText(['Popcorn Studios']);
 				case 4:
-					addMoreText('present');
+					addMoreText(LanguageManager.get("title.present"));
 				case 5:
 					deleteCoolText();
 				case 6:
-					createCoolText(['In association', 'with'], -40);
+					createCoolText([LanguageManager.get("title.madeon")], -40);
 				case 8:
-					addMoreText('newgrounds', -40);
 					if (ngSpr != null) ngSpr.visible = true;
 				case 9:
 					deleteCoolText();

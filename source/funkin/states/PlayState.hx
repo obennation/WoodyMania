@@ -2641,27 +2641,17 @@ class PlayState extends MusicBeatState
     	    add(blackYnot);
     	}
 
-    	blackYnot.revive();
-    	blackYnot.camera = camOther;
-    	blackYnot.alpha = 1;
-
-		if (endingCutscene)
-		{
-		    endingCutscene = false;
-		    endSong();
-		}
-		else
-		{
-		    startCountdown();
-		}
-
-    	FlxTween.tween(blackYnot, {alpha: 0}, 0.35, {
-    	    ease: FlxEase.quadInOut,
-    	    onComplete: function(_)
-    	    {
-    	        blackYnot.kill();
-    	        blackYnot = null;
-    	    }
+    	FlxG.camera.fade(FlxColor.BLACK, 0.5, true, function()
+    	{
+	    	if (endingCutscene)
+	    	{
+	    		endingCutscene = false;
+	    		endSong();
+	    	}
+	    	else
+	    	{
+	    		startCountdown();
+	    	}
     	});
 	}
 

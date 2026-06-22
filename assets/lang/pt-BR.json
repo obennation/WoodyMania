@@ -2,7 +2,15 @@
     "name": "Português (Brasil)",
     "translation_credits": "bennation",
     "lang": {
-        
+        "title.present": "apresenta",
+        "title.madeon": "Feito na",
+
+        "flashlights.warntext": "Ei, cuidado!\n
+        Este Mod contém luzes piscantes!\n
+        Pressione ENTER para desativá-las agora ou acesse o Menu de Opções.\n
+        Pressione ESCAPE para ignorar esta mensagem.\n
+        Você foi avisado!",
+
         "storymode.score": "PONTUAÇÃO",
         "storymode.tutorial": "Aprendendo o Jogo",
         "storymode.week1": "Bem-vindo à Woody City",
