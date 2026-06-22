@@ -179,6 +179,12 @@ class Splash extends FlxState
 		
 		FlxG.autoPause = _cachedAutoPause;
 
+		if (ClientPrefs.languageSelected != true)
+		{
+			FlxG.switchState(() -> new LanguageState());
+			return;
+		}
+		else
 		FlxG.switchState(() ->
 			Type.createInstance(Main.startMeta.initialState, [])
 		);

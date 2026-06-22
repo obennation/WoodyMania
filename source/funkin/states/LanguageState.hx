@@ -36,6 +36,8 @@ class LanguageState extends MusicBeatState
 	{
 		super.create();
 
+		FlxG.sound.volume = 1;
+
 		FunkinSound.playMusic(Paths.music('breakfast'), 0);
 		FlxG.sound.music.fadeIn(4, 0, 0.7);
 
@@ -45,9 +47,7 @@ class LanguageState extends MusicBeatState
 		bg.alpha = 0;
 		add(bg);
 
-		FlxTween.tween(bg, {alpha: 1}, 0.4, {
-			ease: FlxEase.quartInOut
-		});
+		FlxTween.tween(bg, {alpha: 1}, 0.4, {ease: FlxEase.quartInOut});
 
 		chat = new FlxSprite(-100, -50).loadAtlasFrames(Paths.getAtlasFrames('menus/language/chat'));
 		chat.animation.addByPrefix("idle", "chat", 24, true);
@@ -126,14 +126,17 @@ class LanguageState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.ENTER)
 		{
-         FlxG.sound.play(Paths.sound('confirmMenu'));
+            FlxG.sound.play(Paths.sound('confirmMenu'));
 
-         FlxFlicker.flicker(langTxt, 1, 0.1, false, true, function(flk:FlxFlicker) {
+            FlxFlicker.flicker(langTxt, 1, 0.1, false, true, function(flk:FlxFlicker) {
 				new FlxTimer().start(0.5, function(tmr:FlxTimer) {
-					FlxG.switchState(TitleState.new);
+					FlxG.save.flush();
 
-               ClientPrefs.language = langIDs[selected];
+                    ClientPrefs.language = langIDs[selected];
+                    ClientPrefs.languageSelected = true;
+
 					LanguageManager.load(ClientPrefs.language);
+					FlxG.switchState(TitleState.new);
 				});
 			});
 		}

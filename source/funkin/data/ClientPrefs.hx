@@ -58,6 +58,8 @@ class ClientPrefs
 	// language ------------------------------------------------------------------------//
 
 	@saveVar public static var language:String = "en-US";
+
+	@saveVar public static var languageSelected:Bool = false;
 	
 	// visuals ------------------------------------------------------------------------//
 	@saveVar public static var jumpGhosts:Bool = false;
