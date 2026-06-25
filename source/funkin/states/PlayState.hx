@@ -1781,24 +1781,26 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.SPACE)
 		{
-			boyfriend.playAnimForDuration('hey', false);
-		}
+			if (vidPlaying && skippableVideo)
+			{
+				vidPlaying = false;
 
-		if (vidPlaying && skippableVideo && FlxG.keys.justPressed.SPACE)
-		{
-    		vidPlaying = false;
-
-    		if (video != null)
-    		{
-    		    FlxTween.tween(video, {alpha: 0}, 0.25, {
-    		        ease: FlxEase.quadOut,
-    		        onComplete: function(_)
-    		        {
-   		                video.stop();
-   		                onVidEnd();
-    		        }
-    		    });
-    		}
+				if (video != null)
+				{
+					FlxTween.tween(video, {alpha: 0}, 0.25, {
+						ease: FlxEase.quadOut,
+						onComplete: function(_)
+						{
+							video.stop();
+							onVidEnd();
+						}
+					});
+				}
+			}
+			else
+			{
+				boyfriend.playAnimForDuration('hey', false);
+			}
 		}
 		
 		if (controls.PAUSE && startedCountdown && canPause)
