@@ -6,6 +6,7 @@ import funkin.input.Controls;
 #if VIDEOS_ALLOWED
 import hxvlc.flixel.FlxVideoSprite;
 import hxvlc.util.Location;
+import funkin.objects.FunkinCaption;
 
 // with hxvlcs improvements this is less needed but still has its values
 
@@ -72,6 +73,8 @@ class FunkinVideoSprite extends FlxVideoSprite
 	 * Disable this if you dont want your video to pause when paused in `PlayState`
 	 */
 	public var tiedToGame:Bool = true;
+
+	public var captions:FunkinCaptionGroup;
 	
 	/**
 	 * Bool that decides if the video can be skipped.
@@ -147,6 +150,8 @@ class FunkinVideoSprite extends FlxVideoSprite
 	{
 		super(x, y);
 		canSkip = isSkippable;
+
+		captions = new FunkinCaptionGroup();
 		if (oneTimeUse) bitmap.onEndReached.add(this.destroy, true, -10);
 		
 		instances.push(this);
@@ -291,6 +296,24 @@ class FunkinVideoSprite extends FlxVideoSprite
 		{
 			skip();
 		}
+
+		if (ClientPrefs.subtitles)
+		{
+			captions.time = currentTime / 1000;
+			
+			captions.update(elapsed);
+		}
+	}
+
+	public override function draw():Void
+	{
+		super.draw();
+		
+		if (ClientPrefs.subtitles)
+		{
+			captions.cameras = cameras;
+			captions.draw();
+		}
 	}
 	
 	/**
@@ -302,6 +325,27 @@ class FunkinVideoSprite extends FlxVideoSprite
 		setGraphicSize(FlxG.width, FlxG.height);
 		updateHitbox();
 		screenCenter();
+	}
+
+	public override function load(location:hxvlc.util.Location, ?options:Array<String>):Bool
+	{
+		captions.empty();
+		
+		if (location is String)
+		{
+			final srtPath:String = '${location.withoutExtension()}.srt';
+			
+			if (FunkinAssets.exists(srtPath))
+			{
+				final srt:String = FunkinAssets.getContent(srtPath);
+				
+				captions.preload(FunkinCaption.parseSrt(srt));
+				
+				#if VERBOSE_LOGS trace('loaded srt $srtPath'); #end
+			}
+		}
+		
+		return super.load(location, options);
 	}
 	
 	override function destroy()
