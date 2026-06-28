@@ -1800,6 +1800,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				boyfriend.playAnimForDuration('hey', false);
+				boyfriend.specialAnim = true;
 			}
 		}
 		
