@@ -117,7 +117,7 @@ class FunkinVideoSprite extends FlxVideoSprite
 	 */
 	public var currentTime(get, never):Int;
 	
-	inline function get_currentTime():Int return bitmap != null ? haxe.Int64.toInt(bitmap.length) : -1;
+	inline function get_currentTime():Int return bitmap != null ? haxe.Int64.toInt(bitmap.time) : -1;
 	
 	/**
 	 * Returns the total duration of the loaded video in milliseconds.
@@ -289,9 +289,11 @@ class FunkinVideoSprite extends FlxVideoSprite
 	{
 		if (bitmap != null && bitmap.length > 0) bitmap.time = haxe.Int64.ofInt(Std.int(FlxMath.bound(value, 0.0, 1.0) * haxe.Int64.toInt(bitmap.length)));
 	}
-	
+
 	override public function update(elapsed:Float)
 	{
+		super.update(elapsed);
+
 		if (canSkip && Controls.instance.ACCEPT)
 		{
 			skip();
@@ -300,7 +302,6 @@ class FunkinVideoSprite extends FlxVideoSprite
 		if (ClientPrefs.subtitles)
 		{
 			captions.time = currentTime / 1000;
-			
 			captions.update(elapsed);
 		}
 	}
@@ -308,11 +309,17 @@ class FunkinVideoSprite extends FlxVideoSprite
 	public override function draw():Void
 	{
 		super.draw();
-		
+
 		if (ClientPrefs.subtitles)
 		{
-			captions.cameras = cameras;
-			captions.draw();
+			for (caption in captions.members)
+			{
+				if (caption != null)
+				{
+					caption.cameras = cameras;
+					caption.draw();
+				}
+			}
 		}
 	}
 	
@@ -338,9 +345,11 @@ class FunkinVideoSprite extends FlxVideoSprite
 			if (FunkinAssets.exists(srtPath))
 			{
 				final srt:String = FunkinAssets.getContent(srtPath);
-				
+
 				captions.preload(FunkinCaption.parseSrt(srt));
-				
+				captions.playing = true;
+				captions.time = 0;
+
 				#if VERBOSE_LOGS trace('loaded srt $srtPath'); #end
 			}
 		}

@@ -40,21 +40,33 @@ class FunkinCaption extends flixel.group.FlxSpriteGroup
 	{
 		this.y = y;
 		this.timestamp = timestamp;
-		
+
 		text.text = LanguageManager.get(string);
-		text.setFormat(Paths.font('vcr.ttf'), 24, FlxColor.WHITE, CENTER, OUTLINE, FlxColor.BLACK);
-		
+		text.setFormat(Paths.DEFAULT_FONT, 24, FlxColor.WHITE, CENTER);
+
 		return recalculate();
 	}
 	
 	public inline function recalculate():FunkinCaption
 	{
-		bg.setGraphicSize(Std.int(text.width + 20), Std.int(text.height));
+		var paddingX:Int = 30;
+		var paddingY:Int = 16;
+
+		bg.makeGraphic(
+			Std.int(text.width + paddingX),
+			Std.int(text.height + paddingY),
+			FlxColor.BLACK
+		);
+
+		bg.alpha = 0.6;
 		bg.updateHitbox();
-		
-		bg.x = this.x = Math.round((FlxG.width - bg.width) * .5);
-		text.x = (this.x + 10);
-		
+
+		bg.x = this.x = Math.round((FlxG.width - bg.width) / 2);
+		bg.y = this.y;
+
+		text.x = bg.x + (paddingX / 2);
+		text.y = bg.y + (paddingY / 2) - 2;
+
 		return this;
 	}
 	
@@ -175,23 +187,30 @@ class FunkinCaptionGroup extends flixel.group.FlxGroup.FlxTypedGroup<FunkinCapti
 	
 	public override function update(elapsed:Float):Void
 	{
-		if (playing) time += elapsed;
-		
+		if (playing)
+			time += elapsed;
+
 		if (_queue.length > 0 && time >= _queue[0].timestamp.start)
 		{
-			var caption = _queue[0];
-
-			PlayState.instance.showSubtitle(
-				caption.string,
-				caption.timestamp.end - caption.timestamp.start
-			);
-
-			_queue.remove(caption);
-
-			if (cleanup)
-				caption.destroy();
+			add(_queue[0]);
+			_queue.remove(_queue[0]);
 		}
-		
+
+		var i:Int = 0;
+		while (i < members.length)
+		{
+			final caption:FunkinCaption = members[i++];
+
+			if (caption != null && caption.timestamp != null && time >= caption.timestamp.end)
+			{
+				if (cleanup)
+					caption.destroy();
+
+				remove(caption, true);
+				i--;
+			}
+		}
+
 		super.update(elapsed);
 	}
 	
