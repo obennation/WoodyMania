@@ -87,7 +87,7 @@ class TitleState extends MusicBeatState
 			add(logo);
 			logo.shader = swagShader.shader;
 			
-			titleText = new FlxSprite(100, 576).loadAtlasFrames(Paths.getAtlasFrames('menus/title/titleEnter'));
+			titleText = new FlxSprite(100, 576).loadAtlasFrames(Paths.getAtlasFrames(LanguageManager.image('menus/title/titleEnter')));
 			titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 			titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 			titleText.animation.play('idle');
