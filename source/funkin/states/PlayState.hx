@@ -1137,7 +1137,7 @@ class PlayState extends MusicBeatState
 	{
 		final pref = countdownPrefix != Paths.COUNTDOWN_PREFIX ? countdownPrefix : Paths.COUNTDOWN_PREFIX;
 		
-		final spr = new FlxSprite().loadGraphic(Paths.image(pref + path));
+		final spr = new FlxSprite().loadGraphic(Paths.image(LanguageManager.image(pref + path)));
 		spr.scrollFactor.set();
 		spr.updateHitbox();
 		
