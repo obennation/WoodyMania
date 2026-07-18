@@ -234,6 +234,9 @@
         "tutorial.up": "Up",
         "tutorial.up2": "Up, Up",
         "tutorial.right": "Right",
-        "tutorial.congrats": "Congrats!"
+        "tutorial.congrats": "Congrats!",
+
+        "flushed.ladiesandgentlemen": "Ladies and Gentlemen!",
+        "flushed.introducing": "Introducing:"
     }
 }
