@@ -130,11 +130,6 @@ class MainMenuState extends MusicBeatState
 		
 		if (!canInteract)
 		{
-			if (FlxG.keys.justPressed.TAB)
-			{
-				FlxG.switchState(ModsState.new);
-			}
-			
 			if (controls.UI_UP_P || controls.UI_DOWN_P)
 			{
 				FunkinSound.play(Paths.sound('scrollMenu'));
