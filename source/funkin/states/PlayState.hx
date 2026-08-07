@@ -1797,11 +1797,6 @@ class PlayState extends MusicBeatState
 					});
 				}
 			}
-			else
-			{
-				boyfriend.playAnimForDuration('hey', false);
-				boyfriend.specialAnim = true;
-			}
 		}
 		
 		if (controls.PAUSE && startedCountdown && canPause)
