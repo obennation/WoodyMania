@@ -620,7 +620,6 @@ class PlayState extends MusicBeatState
 		
 		debugKeysChart = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_1'));
 		debugKeysCharacter = ClientPrefs.copyKey(ClientPrefs.keyBinds.get('debug_2'));
-		PauseSubState.songName = null; // Reset to default
 		
 		songStartCallback = startCountdown;
 		songEndCallback = endSong;
@@ -860,8 +859,9 @@ class PlayState extends MusicBeatState
 		Paths.sound('missnote2');
 		Paths.sound('missnote3');
 		
-		if (PauseSubState.songName != null) Paths.music(PauseSubState.songName);
-		else Paths.music(Paths.sanitize('breakfast'));
+		Paths.music(Paths.sanitize('breakfast'));
+
+		Paths.music(Paths.sanitize('fiveHundredCigarretes'));
 		
 		// Updating Discord Rich Presence.
 		resetDiscordRPC();
