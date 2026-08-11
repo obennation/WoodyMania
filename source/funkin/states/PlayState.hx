@@ -860,7 +860,7 @@ class PlayState extends MusicBeatState
 		Paths.sound('missnote3');
 		
 		Paths.music(Paths.sanitize('breakfast'));
-
+        Paths.music(Paths.sanitize('ohhTheMemories'));
 		Paths.music(Paths.sanitize('fiveHundredCigarretes'));
 		
 		// Updating Discord Rich Presence.

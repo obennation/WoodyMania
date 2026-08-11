@@ -90,6 +90,8 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic.loadEmbedded(Paths.music(Paths.sanitize('breakfast')), true, true);
 		if (PlayState.SONG.song.toLowerCase() == 'flushed')
     		pauseMusic.loadEmbedded(Paths.music(Paths.sanitize('fiveHundredCigarretes')), true, true);
+		if (PlayState.SONG.song.toLowerCase() == 'older')
+    		pauseMusic.loadEmbedded(Paths.music(Paths.sanitize('ohhTheMemories')), true, true);
 		pauseMusic.volume = 0;
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 		
