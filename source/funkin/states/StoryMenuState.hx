@@ -325,9 +325,10 @@ class StoryMenuState extends MusicBeatState
 			new FlxTimer().start(1, function(tmr:FlxTimer) {
 				if (FlxG.sound.music != null)
 				{
-					FlxG.sound.music.onComplete = null;
-					FlxG.sound.music.stop();
-				}
+				    FlxTween.tween(FlxG.sound.music, {volume: 0}, 1, {
+				        ease: FlxEase.linear
+ 				   });
+           	    }
 				
 				FlxG.switchState(PlayState.new);
 				FreeplayState.destroyFreeplayVocals();

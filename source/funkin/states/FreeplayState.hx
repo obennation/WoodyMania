@@ -387,7 +387,7 @@ class FreeplayState extends MusicBeatState
 				changeSelection();
 
 				MusicBeatState.transitionInState = null;
-				MusicBeatState.transitionOutState = null;
+			    MusicBeatState.transitionOutState = null;
 			}
 			
 			super.update(elapsed);
@@ -488,7 +488,12 @@ class FreeplayState extends MusicBeatState
 				FlxG.switchState(PlayState.new);
 			}
 			
-			if (FlxG.sound.music != null) FlxG.sound.music.volume = 0;
+			if (FlxG.sound.music != null)
+			{
+			    FlxTween.tween(FlxG.sound.music, {volume: 0}, 1, {
+			        ease: FlxEase.linear
+ 			   });
+            }
 			
 			destroyFreeplayVocals();
 		}
