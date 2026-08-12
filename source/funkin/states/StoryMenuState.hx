@@ -10,6 +10,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.graphics.FlxGraphic;
 
+import funkin.states.transitions.ScriptedTransition;
 import funkin.data.WeekData;
 import funkin.data.*;
 import funkin.states.*;
@@ -260,6 +261,9 @@ class StoryMenuState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
 			FlxG.switchState(MainMenuState.new);
+			
+			MusicBeatState.transitionInState = null;
+			MusicBeatState.transitionOutState = null;
 		}
 		
 		super.update(elapsed);
@@ -290,6 +294,8 @@ class StoryMenuState extends MusicBeatState
 				if (bf.character != '' && bf.hasConfirmAnimation) grpWeekCharacters.members[1].animation.play('confirm');
 				stopspamming = true;
 			}
+
+			ScriptedTransition.setTransition('Sticker');
 			
 			// We can't use Dynamic Array .copy() because that crashes HTML5, here's a workaround.
 			var songArray:Array<String> = [];

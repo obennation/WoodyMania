@@ -13,6 +13,7 @@ import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 
+import funkin.states.transitions.ScriptedTransition;
 import funkin.backend.Difficulty;
 import funkin.Mods;
 import funkin.data.SongMetaData;
@@ -384,6 +385,9 @@ class FreeplayState extends MusicBeatState
 			{
 				mayGoToChartConverter = false;
 				changeSelection();
+
+				MusicBeatState.transitionInState = null;
+				MusicBeatState.transitionOutState = null;
 			}
 			
 			super.update(elapsed);
@@ -408,6 +412,9 @@ class FreeplayState extends MusicBeatState
 			
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			FlxG.switchState(MainMenuState.new);
+
+			MusicBeatState.transitionInState = null;
+			MusicBeatState.transitionOutState = null;
 		}
 		
 		if (FlxG.keys.justPressed.CONTROL)
@@ -465,6 +472,8 @@ class FreeplayState extends MusicBeatState
 				super.update(FlxG.elapsed);
 				return;
 			}
+
+			ScriptedTransition.setTransition('Sticker');
 			
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 			

@@ -41,6 +41,7 @@ import funkin.data.*;
 import funkin.states.*;
 import funkin.states.substates.*;
 import funkin.states.editors.*;
+import funkin.states.transitions.ScriptedTransition;
 import funkin.game.modchart.*;
 import funkin.game.StoryMeta;
 import funkin.game.Countdown;
@@ -2664,6 +2665,7 @@ class PlayState extends MusicBeatState
 	    	{
 	    		endingCutscene = false;
 	    		endSong();
+				ScriptedTransition.setTransition('Sticker');
 	    	}
 	    	else
 	    	{
@@ -2836,6 +2838,9 @@ class PlayState extends MusicBeatState
 				{
 					FlxTransitionableState.skipNextTransIn = false;
 					FlxTransitionableState.skipNextTransOut = false;
+
+					MusicBeatState.transitionInState = null;
+					MusicBeatState.transitionOutState = null;
 					
 					prevCamFollow = camFollow;
 					
