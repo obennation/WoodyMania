@@ -430,6 +430,7 @@ class PlayState extends MusicBeatState
 	public var videoCheckStory:Bool = true;
 	public var skippableVideo:Bool = true;
 	public var video:FunkinVideoSprite;
+	public var skipText:FlxText;
 	
 	/**
 	 * Default camera zoom the game will attempt to return to.
@@ -810,6 +811,13 @@ class PlayState extends MusicBeatState
 		botplayTxt.visible = cpuControlled;
 		if (ClientPrefs.downScroll) botplayTxt.y = FlxG.height - botplayTxt.height - 55;
 		add(botplayTxt);
+
+		final PADDING = 15;
+		skipText = new FlxText(PADDING, 0, FlxG.width - PADDING * 2, LanguageManager.get("video.skip"));
+		skipText.setFormat(Paths.DEFAULT_FONT, 25, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		skipText.borderSize = 2;
+		skipText.y = FlxG.height - skipText.height - (PADDING * (3 / 4));
+		skipText.zIndex = 12;
 		
 		notes.cameras = [camHUD];
 		playFields.cameras = [camHUD];
@@ -2647,6 +2655,7 @@ class PlayState extends MusicBeatState
 
     	camGame.visible = true;
     	camHUD.visible = true;
+		skipText.visible = false;
 
     	if (blackYnot == null)
     	{
@@ -2672,6 +2681,19 @@ class PlayState extends MusicBeatState
 	    		startCountdown();
 	    	}
     	});
+	}
+
+	public function textFade()
+	{
+		if (!skippableVideo) return;
+	
+		skipText.visible = true;
+		skipText.alpha = 0;
+		FlxTween.tween(skipText, {alpha: .5}, 2, {ease: FlxEase.sineInOut});
+		FlxTween.tween(skipText, {alpha: 0}, 3, {startDelay: 4, ease: FlxEase.sineInOut});
+	
+		skipText.camera = camOther;
+		add(skipText);
 	}
 
 	public function videoCutscene(?vid:String = 'upapayuma', ?canSkip:Bool, ?onEnd:Void->Void, ?onFormat:Void->Void)
@@ -2710,6 +2732,11 @@ class PlayState extends MusicBeatState
         	    blackYnot.alpha = 1;
         	    FlxTween.tween(blackYnot, {alpha: 0}, 0.5);
         	}
+			
+			if (!endingCutscene)
+	    	{
+	    		textFade();
+	    	}
     	});
 
     	add(video);

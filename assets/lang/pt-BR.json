@@ -16,6 +16,8 @@ Você foi avisado!",
         "play.one": "Três, Dois, Um",
         "play.go": "Já!",
 
+        "video.skip": "Aperte ESPAÇO para pular.",
+
         "upapayumacutscene.gf1": "Essa cidade é bem calminha mesmo!",
         "upapayumacutscene.gf2": "Mas o que você quer fazer aqui?",
         "upapayumacutscene.bf1": "Uhh..",
@@ -139,6 +141,8 @@ Você foi avisado!",
         "pause.Easy": "Easy",
         "pause.Normal": "Normal",
         "pause.Hard": "Hard",
+        "pause.Erect": "Erect",
+        "pause.Nightmare": "Nightmare",
         "pause.BACK": "Voltar",
 
         "pause.Leave Charting Mode": "Sair do Modo Charter",

@@ -16,12 +16,9 @@ class MasterEditorMenu extends MusicBeatState
 	var options:Array<String> = [
 		'Chart Editor',
 		'Character Editor',
-		'Note Skin Editor',
 		'Chart Converter',
 		"Metadata Editor",
-		'Mods Manager',
 		'Week Editor',
-		'Menu Character Editor',
 	];
 	private var grpTexts:FlxTypedGroup<Alphabet>;
 	private var directories:Array<String> = [null];
@@ -108,20 +105,14 @@ class MasterEditorMenu extends MusicBeatState
 		{
 			switch (options[curSelected])
 			{
-				case 'Mods Manager':
-					FlxG.switchState(() -> new ModsState());
 				case 'Character Editor':
 					FlxG.switchState(() -> new CharacterEditorState(Character.DEFAULT_CHARACTER, false));
 				case 'Week Editor':
 					FlxG.switchState(() -> new WeekEditorState());
 				case 'Metadata Editor':
 					openSubState(new SongMetaEditor());
-				case 'Menu Character Editor':
-					FlxG.switchState(() -> new MenuCharacterEditorState());
 				case 'Chart Editor': // felt it would be cool maybe
 					FlxG.switchState(ChartEditorState.new);
-				// case 'Note Skin Editor':
-				// 	FlxG.switchState(() -> new NoteSkinEditor('default'));
 				case 'Chart Converter':
 					FlxG.switchState(() -> new ChartConverterState());
 			}

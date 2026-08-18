@@ -16,6 +16,8 @@
         "play.one": "Three, Two, One",
         "play.go": "Go!",
 
+        "video.skip": "Press SPACE to skip.",
+
         "upapayumacutscene.gf1": "This city is actually pretty chill!",
         "upapayumacutscene.gf2": "But what do you wanna do here?",
         "upapayumacutscene.bf1": "Uhh..",
@@ -137,6 +139,8 @@
         "pause.Easy": "Easy",
         "pause.Normal": "Normal",
         "pause.Hard": "Hard",
+        "pause.Erect": "Erect",
+        "pause.Nightmare": "Nightmare",
         "pause.BACK": "Back",
 
         "pause.Leave Charting Mode": "Leave Charting Mode",
